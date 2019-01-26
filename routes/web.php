@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/home', function() {
     return view('home');
 });
+
+Route::resource('perfiles', 'PerfilesController', ['parameters' => [
+    'perfiles' => 'perfil'
+]]);
