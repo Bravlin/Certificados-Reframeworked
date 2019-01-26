@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Admin - FICertif')
+
 @section('head-particular')
     <link rel="stylesheet" type="text/css" href="/css/item-consulta.css">
 @endsection
