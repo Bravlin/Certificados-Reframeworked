@@ -12,11 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function() {
-    return view('home');
+    return view('index');
 });
 
 Route::resource('perfiles', 'PerfilesController', ['parameters' => [
