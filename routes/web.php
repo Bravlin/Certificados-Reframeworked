@@ -11,10 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'administrador_guest'], function() {
+    Route::get('/administradores/login', 'AdministradorController@showLoginForm');
+    Route::post('/administradores/login', 'AdministradorController@login')->name('administradores.login');
 });
 
-Route::resource('perfiles', 'PerfilesController', ['parameters' => [
-    'perfiles' => 'perfil'
-]]);
+Route::group(['middleware' => 'administrador_auth'], function() {
+    Route::get('/', function () {
+        return view('index');
+    });
+
+    Route::resource('perfiles', 'PerfilesController', ['parameters' => [
+        'perfiles' => 'perfil'
+    ]]);
+
+    Route::post('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
+});
