@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navegacionPrincipal">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="lib/sesion-baja.php"><i class="fa fa-sign-out mr-1"></i>Salir</a>
+                    <a class="nav-link" href="{{ route('administradores.logout') }}"><i class="fa fa-sign-out mr-1"></i>Salir</a>
                 </li>
             </ul>
         </div>
