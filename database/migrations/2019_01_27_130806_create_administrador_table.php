@@ -17,6 +17,7 @@ class CreateAdministradorTable extends Migration
             $table->increments('id_administrador');
             $table->string('email', 255);
             $table->string('password', 255);
+            $table->string('remember_token', 100);
         });
     }
 

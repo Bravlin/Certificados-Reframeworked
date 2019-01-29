@@ -29,5 +29,5 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'perfiles' => 'perfil'
     ]]);
 
-    Route::post('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
+    Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });
