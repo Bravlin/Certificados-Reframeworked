@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdministradorTable extends Migration
+class CreateCiudadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAdministradorTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrador', function (Blueprint $table) {
-            $table->increments('id_administrador');
-            $table->string('email', 255);
-            $table->string('password', 255);
-            $table->rememberToken('remember_token', 100);
+        Schema::create('ciudad', function (Blueprint $table) {
+            $table->increments('id_ciudad');
+            $table->string('nombre', 50);
+            $table->integer('fk_provincia');
+
+            $table->foreign('fk_provincia')->references('id_provincia')->on('provincia');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateAdministradorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administradors');
+        Schema::dropIfExists('ciudad');
     }
 }

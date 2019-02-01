@@ -8,5 +8,14 @@
 
 @section('contenido')
     <h1 class="mb-5 text-center">Bienvenido al sistema de envío de certificados</h1>
+
     <h3 class="mb-4">Eventos agregados recientemente</h3>
+
+    @if (!$eventos->isEmpty())
+        <div class="row">
+            @foreach ($eventos as $evento)
+                @include('eventos.item')
+            @endforeach
+        </div>
+    @endif
 @endsection

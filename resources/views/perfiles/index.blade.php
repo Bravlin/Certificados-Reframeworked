@@ -52,18 +52,21 @@
                                     ">
                             </a>
                         </div>
+
                         <div class="col-12 col-sm-8 px-0 contenedor-info">
                             <div class="contenedor-nombre px-4">
                                 <a class="nombre-apellido" href="certificados.php?idPerfil={{ $perfil->id }}">
                                     <h4 class="text-center">{{ $perfil->nombre }} {{ $perfil->apellido }}</h4>
                                 </a>
                             </div>
+
                             <ul class="pl-0 mx-4">
                                 <li><i class="fa fa-map-marker mr-1"></i>{{ $perfil->organismo }}</li>
                                 <li><i class="fa fa-group mr-1"></i>{{ $perfil->cargo }}</li>
                                 <li><i class="fa fa-envelope mr-1"></i>{{ $perfil->email }}</li>
                                 <li><i class="fa fa-phone mr-1"></i>{{ $perfil->telefono }}</li>
                             </ul>
+
                             <a class="btn btn-primary ml-3 mb-3" href="/perfiles/{{ $perfil->id }}/edit">
                                 Modificar
                             </a>
