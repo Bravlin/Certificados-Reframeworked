@@ -48,8 +48,8 @@
                 <div class="lista-navegables rounded fondo-gris py-3">
                     <ul class="pl-0 mx-md-3">
                         <li class="mb-3"><a href="/"><i class="fa fa-home"></i>Inicio</a></li>
-                        <li class="mb-3"><a href="certificados.php"><i class="fa fa-file"></i>Certificados</a></li>
-                        <li class="mb-3"><a href="eventos.php"><i class="fa fa-calendar"></i>Eventos</a></li>
+                        <li class="mb-3"><a href="/certificados"><i class="fa fa-file"></i>Certificados</a></li>
+                        <li class="mb-3"><a href="/eventos"><i class="fa fa-calendar"></i>Eventos</a></li>
                         <li><a href="/perfiles"><i class="fa fa-user"></i>Perfiles</a></li>
                     </ul>
                 </div>
@@ -72,14 +72,14 @@
                 </div>
 
                 <div class="col-3">
-                    <a href="certificados.php">
+                    <a href="/certificados">
                         <i class="fa fa-file"></i>
                         <p>Certificados</p>
                     </a>
                 </div>
 
                 <div class="col-3">
-                    <a href="eventos.php">
+                    <a href="/eventos">
                         <i class="fa fa-calendar"></i>
                         <p>Eventos</p>
                     </a>

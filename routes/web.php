@@ -21,12 +21,14 @@ Route::group(['middleware' => 'administrador_guest'], function() {
 });
 
 Route::group(['middleware' => 'administrador_auth'], function() {
-    Route::get('/', function () {
-        return view('index');
-    });
+    Route::get('/', 'InicioController@index');
 
     Route::resource('perfiles', 'PerfilesController', ['parameters' => [
         'perfiles' => 'perfil'
+    ]]);
+
+    Route::resource('eventos', 'EventosController', ['parameters' => [
+        'eventos' => 'evento'
     ]]);
 
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
