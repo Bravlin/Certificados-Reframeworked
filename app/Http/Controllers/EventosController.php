@@ -42,7 +42,28 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = request()->validate([
+            'nombre' => 'required',
+            'direccion_calle' => 'required',
+            'direccion_altura' => 'required|integer|min:1',
+            'provincia' => 'required',
+            'ciudad' => 'required',
+            'fecha_realizacion' => 'required|date|after:now',
+            'portada' => 'mimes:jpeg,png,jpg|max:5000'
+        ]);
+        $nuevoEvento = Evento::create([
+            'nombre' => $campos['nombre'],
+            'direccion_calle' => $campos['direccion_calle'],
+            'direccion_altura' => $campos['direccion_altura'],
+            'fk_ciudad' => $campos['ciudad'],
+            'fecha_realizacion' => $campos['fecha_realizacion'],
+            'fecha_creacion' => date("Y-m-d H:i:s")
+        ]);
+        if ($request->hasFile('portada'))
+            $path = $request->file('portada')->storeAs(
+                'media/portadas-eventos', $nuevoEvento->id_evento.'-p', 'public'
+            );
+        return redirect('/eventos');
     }
 
     /**

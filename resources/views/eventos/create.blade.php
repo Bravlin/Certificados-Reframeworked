@@ -8,7 +8,7 @@
 
 @section('contenido')
     <div class="form-container col-10 col-lg-8 py-5 px-1 px-sm-3 row justify-content-center mx-auto">
-        <form class="formulario-principal color-blanco" method="POST" enctype="multipart/form-data">
+        <form class="formulario-principal color-blanco" method="POST" enctype="multipart/form-data" action="/eventos">
             @csrf
 
             <h1 class="text-center">Incorpora un evento</h1>
@@ -17,7 +17,8 @@
 
                 <div class="col-12 elemento-form">
                     <label for="nombre">Nombre del evento</label>
-                    <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Mi evento" required>
+                    <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Mi evento"
+                    value="{{ old('nombre') }}" required>
 
                     @if ($errors->has('nombre'))
                         <p class="alerta">El nombre no puede quedar vacío</p>
@@ -26,12 +27,14 @@
 
                 <div class="col-12 elemento-form">
                     <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" type="text" class="form-control" placeholder="Describa al evento..."></textarea>
+                    <textarea id="descripcion" name="descripcion" type="text" class="form-control"
+                    placeholder="Describa al evento...">{{old('descripcion') }}</textarea>
                 </div>
 
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="calle">Calle</label>
-                    <input id="calle" name="direccion_calle" type="text" class="form-control" placeholder="Calle" required>
+                    <input id="calle" name="direccion_calle" type="text" class="form-control" placeholder="Calle"
+                    value="{{ old('direccion_calle') }}" required>
 
                     @if ($errors->has('direccion_calle'))
                         <p class="alerta">La calle no puede quedar vacía</p>
@@ -40,9 +43,10 @@
 
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="altura">Altura</label>
-                    <input id="altura" name="calle_altura" type="number" class="form-control" placeholder="123" required>
+                    <input id="altura" name="direccion_altura" type="number" class="form-control" placeholder="123"
+                    value="{{ old('direccion_altura') }}" required>
 
-                    @if ($errors->has('calle_altura'))
+                    @if ($errors->has('direccion_altura'))
                         <p class="alerta">Altura inválida</p>
                     @endif
                 </div>
@@ -74,7 +78,8 @@
 
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="fechaReal">Fecha y hora de realización</label>
-                    <input id="fechaReal" name="fecha_realizacion" type="datetime-local" class="form-control" required>
+                    <input id="fechaReal" name="fecha_realizacion" type="datetime-local" class="form-control"
+                    value="{{ old('fecha_realizacion') }}" required>
 
                     @if ($errors->has('fecha_realizacion'))
                         <p class="alerta">Ingrese una fecha válida</p>
