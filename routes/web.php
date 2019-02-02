@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades');
+
 Route::group(['middleware' => 'administrador_guest'], function() {
     Route::get('/administradores/login', 'AdministradorController@showLoginForm');
     Route::post('/administradores/login', 'AdministradorController@login')->name('administradores.login');

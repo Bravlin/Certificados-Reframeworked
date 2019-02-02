@@ -19,7 +19,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="nombre">Nombre</label>
                     <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Juan Martín"
-                    value="{{ $perfil->nombre }}" required>
+                    value="{{ old('nombre', $perfil->nombre) }}" required>
 
                     @if ($errors->has('nombre'))
                         <p class="alerta">El nombre no puede quedar vacío</p>
@@ -29,7 +29,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="apellido">Apellido</label>
                     <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Pérez González"
-                    value="{{ $perfil->apellido }}" required>
+                    value="{{ old('apellido', $perfil->apellido) }}" required>
 
                     @if ($errors->has('apellido'))
                         <p class="alerta">El apellido no puede quedar vacío</p>
@@ -39,7 +39,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="telefono">Teléfono</label>
                     <input id="telefono" name="telefono" type="tel" class="form-control" placeholder="+54..."
-                    value="{{ $perfil->telefono }}" required>
+                    value="{{ old('telefono', $perfil->telefono) }}" required>
 
                     @if ($errors->has('telefono'))
                         <p class="alerta">Ingrese un teléfono válido.</p>
@@ -49,7 +49,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="email">E-mail</label>
                     <input id="email" name="email" type="email" class="form-control" placeholder="xxx@xxx.xxx"
-                    value="{{ $perfil->email }}" required>
+                    value="{{ old('email', $perfil->email) }}" required>
 
                     @if ($errors->has('email'))
                         <p class="alerta">El email es inválido o ya existe.</p>
@@ -59,7 +59,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="organismo">Organismo</label>
                     <input id="organismo" name="organismo" type="text" class="form-control" placeholder="Organismo"
-                    value="{{ $perfil->organismo }}" required>
+                    value="{{ old('organismo', $perfil->organismo) }}" required>
 
                     @if ($errors->has('organismo'))
                         <p class="alerta">Debe indicar un organismo.</p>
@@ -69,7 +69,7 @@
                 <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="cargo">Cargo</label>
                     <input id="cargo" name="cargo" type="text" class="form-control" placeholder="Cargo"
-                    value="{{ $perfil->cargo }}" required>
+                    value="{{ old('cargo', $perfil->cargo) }}" required>
 
                     @if ($errors->has('cargo'))
                         <p class="alerta">Debe indicar un cargo.</p>

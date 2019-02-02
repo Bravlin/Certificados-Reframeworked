@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use Illuminate\Http\Request;
+use App\Provincia;
 
 class EventosController extends Controller
 {
@@ -29,7 +30,8 @@ class EventosController extends Controller
      */
     public function create()
     {
-        //
+        $provincias = Provincia::orderBy('nombre')->get();
+        return view('eventos.create', compact('provincias'));
     }
 
     /**
