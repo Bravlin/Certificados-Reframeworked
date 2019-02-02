@@ -43,13 +43,13 @@
                         <div class="col-12 col-sm-4 contenedor-imagen px-0 py-3 py-sm-0">
                             <a href="certificados.php?idPerfil={{ $perfil->id }}">
                                 <img class="imagen-perfil" alt="Perfil"
-                                    src="
-                                        @if (file_exists('/media/perfiles-usuarios/' . $perfil->id . '-perfil'))
-                                            /media/perfiles-usuarios/{{ $perfil->id }}-perfil
+                                    src=
+                                        @if (Storage::disk('public')->exists('media/perfiles-usuarios/'.$perfil->id.'-perfil'))
+                                            {!! '"'.Storage::url('media/perfiles-usuarios/'.$perfil->id.'-perfil').'"' !!}
                                         @else
-                                            /media/perfiles-usuarios/0-perfil
+                                            {!! '"'.Storage::url('media/perfiles-usuarios/0-perfil').'"' !!}
                                         @endif
-                                    ">
+                                >
                             </a>
                         </div>
 
