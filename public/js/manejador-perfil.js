@@ -4,12 +4,14 @@ $(document).ready(function(){
     $('#perfiles').on('click', '.eliminar-perfil', function(){
         if (confirm("¿Está seguro que desea eliminar el perfil indicado?")){
             var idPerfil = $(this).attr('valor');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
-                type: 'POST',
-                url: 'lib/eliminar-perfil.php',
-                data: {
-                    idPerfil: idPerfil,
-                },
+                type: 'DELETE',
+                url: '/perfiles/' + idPerfil,
                 success:function(){
                     var perfil = "#perfil-" + idPerfil;
                     $(perfil).remove();

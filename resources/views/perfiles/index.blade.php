@@ -3,6 +3,8 @@
 @section('title', 'Perfiles - FICertif')
 
 @section('head-particular')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" type="text/css" href="/css/item-perfil.css">
 
     <style>
@@ -24,7 +26,7 @@
 
     <div class="row px-6">
         <div class="mb-6 col-sm">
-            <a href="/perfiles/create" class="agregar-perfil">
+            <a href="{{ route('perfiles.create') }}" class="agregar-perfil">
                 <i class="fa fa-plus-circle mr-1"></i>Agregar perfil
             </a>
             </div>
@@ -67,7 +69,7 @@
                                 <li><i class="fa fa-phone mr-1"></i>{{ $perfil->telefono }}</li>
                             </ul>
 
-                            <a class="btn btn-primary ml-3 mb-3" href="/perfiles/{{ $perfil->id }}/edit">
+                            <a class="btn btn-primary ml-3 mb-3" href="{{ route('perfiles.edit', ['perfil' => $perfil->id]) }}">
                                 Modificar
                             </a>
                             <button class="eliminar-perfil btn btn-danger ml-3 mb-3" valor="<?php echo $perfil['id']; ?>">

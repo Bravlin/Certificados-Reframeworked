@@ -67,25 +67,14 @@ class EventosController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Devuelve la vista para visualizar y gestionar el evento dado.
      *
-     * @param  \App\Evento  $evento
+     * @param \App\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function show(Evento $evento)
+    public function administrar(Evento $evento)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Evento  $evento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Evento $evento)
-    {
-        //
+        return view('eventos.administrar', compact('evento'));
     }
 
     /**

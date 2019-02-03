@@ -9,7 +9,7 @@ class ProvinciaCiudadesController extends Controller
 {
     public function selectCiudades(Provincia $provincia)
     {
-        $ciudades = Provincia::find($provincia->id_provincia)->ciudades;
+        $ciudades = $provincia->ciudades;
         return view('ciudades.select', compact('ciudades'));
     }
 }

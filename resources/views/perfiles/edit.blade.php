@@ -8,7 +8,7 @@
 
 @section('contenido')
     <div class="form-container col-10 col-lg-8 py-5 px-1 px-sm-3 row justify-content-center mx-auto">
-        <form class="formulario-principal color-blanco" method="POST" action="/perfiles/{{ $perfil->id }}"
+        <form class="formulario-principal color-blanco" method="POST" action="{{ route('perfiles.update', ['perfil' => $perfil->id]) }}"
         enctype="multipart/form-data">
             @method('PATCH')
             @csrf
