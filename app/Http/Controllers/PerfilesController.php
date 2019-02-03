@@ -49,17 +49,6 @@ class PerfilesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Perfil  $perfil
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Perfil $perfil)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Perfil  $perfil
@@ -99,6 +88,6 @@ class PerfilesController extends Controller
      */
     public function destroy(Perfil $perfil)
     {
-        //
+        $perfil->delete();
     }
 }

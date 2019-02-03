@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades');
+Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades')->name('provincia.ciudades');
 
 Route::group(['middleware' => 'administrador_guest'], function() {
     Route::get('/administradores/login', 'AdministradorController@showLoginForm');
@@ -27,11 +27,12 @@ Route::group(['middleware' => 'administrador_auth'], function() {
 
     Route::resource('perfiles', 'PerfilesController', ['parameters' => [
         'perfiles' => 'perfil'
-    ]]);
+    ]])->except(['show']);
 
+    Route::get('/eventos/{evento}/administrar', 'EventosController@administrar')->name('eventos.administrar');
     Route::resource('eventos', 'EventosController', ['parameters' => [
         'eventos' => 'evento'
-    ]]);
+    ]])->except(['show', 'edit']);
 
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });

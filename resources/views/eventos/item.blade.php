@@ -1,7 +1,7 @@
 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 d-flex align-items-stretch">
     <div class="card item-consulta">
         <div class="contenedor-portada">
-            <a href="/eventos/{{ $evento->id_evento }}">
+            <a href="{{ route('eventos.administrar', ['evento' => $evento->id_evento]) }}">
                 <img class="card-img-top" alt="Card image cap"
                     src=
                         @if (Storage::disk('public')->exists('media/portadas-eventos/'.$evento->id_evento.'-p'))
@@ -13,7 +13,7 @@
             </a>
 
             <div class="contenedor-nombre px-4">
-                <a class="enlace-evento" href="/eventos/{{ $evento->id_evento }}">
+                <a class="enlace-evento" href="{{ route('eventos.administrar', ['evento' => $evento->id_evento]) }}">
                     <h5 class="card-title my-1">{{ $evento->nombre }}</h5>
                 </a>
             </div>
