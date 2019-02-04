@@ -8,6 +8,20 @@ use App\Provincia;
 
 class EventosController extends Controller
 {
+    private function validarAtributos(Request $request)
+    {
+        return $request->validate([
+            'nombre' => 'required',
+            'direccion_calle' => 'required',
+            'direccion_altura' => 'required|integer|min:1',
+            'provincia' => 'required',
+            'ciudad' => 'required',
+            'fecha_realizacion' => 'required|date|after:now',
+            'portada' => 'mimes:jpeg,png,jpg|max:5000',
+            'descripcion' => 'nullable'
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,17 +56,10 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        $campos = request()->validate([
-            'nombre' => 'required',
-            'direccion_calle' => 'required',
-            'direccion_altura' => 'required|integer|min:1',
-            'provincia' => 'required',
-            'ciudad' => 'required',
-            'fecha_realizacion' => 'required|date|after:now',
-            'portada' => 'mimes:jpeg,png,jpg|max:5000'
-        ]);
+        $campos = $this->validarAtributos($request);
         $nuevoEvento = Evento::create([
             'nombre' => $campos['nombre'],
+            'descripcion' => $campos['descripcion'],
             'direccion_calle' => $campos['direccion_calle'],
             'direccion_altura' => $campos['direccion_altura'],
             'fk_ciudad' => $campos['ciudad'],
@@ -74,7 +81,8 @@ class EventosController extends Controller
      */
     public function administrar(Evento $evento)
     {
-        return view('eventos.administrar', compact('evento'));
+        $provincias = Provincia::orderBy('nombre')->get();
+        return view('eventos.administrar', compact('evento', 'provincias'));
     }
 
     /**
@@ -86,7 +94,16 @@ class EventosController extends Controller
      */
     public function update(Request $request, Evento $evento)
     {
-        //
+        $campos = $this->validarAtributos($request);
+        $evento->update([
+            'nombre' => $campos['nombre'],
+            'descripcion' => $campos['descripcion'],
+            'direccion_calle' => $campos['direccion_calle'],
+            'direccion_altura' => $campos['direccion_altura'],
+            'fk_ciudad' => $campos['ciudad'],
+            'fecha_realizacion' => $campos['fecha_realizacion'],
+        ]);
+        return back();
     }
 
     /**

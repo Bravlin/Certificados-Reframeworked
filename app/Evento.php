@@ -20,4 +20,19 @@ class Evento extends Model
             ->orderBy($columnaOrdenamiento, $secuencia)
             ->get();
     }
+
+    public function ciudad()
+    {
+        return $this->belongsTo('App\Ciudad', 'fk_ciudad', 'id_ciudad');
+    }
+
+    public function fk_provincia()
+    {
+        return $this->ciudad->fk_provincia;
+    }
+
+    public function provincia()
+    {
+        return $this->ciudad->provincia;
+    }
 }
