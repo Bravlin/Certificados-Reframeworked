@@ -3,6 +3,8 @@
 @section('title', $evento->nombre.' - FICertif')
 
 @section('head-particular')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" type="text/css" href="/css/evento.css">
     <link rel="stylesheet" type="text/css" href="/css/edicion-evento.css">
     <link rel="stylesheet" type="text/css" href="/css/comentario.css">

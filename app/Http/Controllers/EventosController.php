@@ -114,6 +114,6 @@ class EventosController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        $evento->delete();
     }
 }
