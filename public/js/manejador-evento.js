@@ -4,14 +4,16 @@ $(document).ready(function(){
     $('#eliminar-evento').on('click', function(){
         if (confirm('¿Está seguro de que desea eliminar este evento?')){
             var idEvento = $('#id_evento').attr('valor');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
-                type: 'POST',
-                url: 'lib/eliminar-evento.php',
-                data: {
-                    idEvento: idEvento,
-                },
+                type: 'DELETE',
+                url: '/eventos/' + idEvento,
                 success:function(){
-                    window.location.replace("eventos.php");
+                    window.location.replace("/eventos");
                 }
             });
         }
