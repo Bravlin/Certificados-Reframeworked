@@ -35,4 +35,9 @@ class Evento extends Model
     {
         return $this->ciudad->provincia;
     }
+
+    public function inscripciones()
+    {
+        return $this->hasMany('App\Inscripcion', 'fk_evento', 'id_evento');
+    }
 }

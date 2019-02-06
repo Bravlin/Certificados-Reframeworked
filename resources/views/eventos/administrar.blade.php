@@ -135,6 +135,49 @@
             </div>
         </div>
     </form>
+
+    <h3 class="mb-4">Inscripciones</h3>
+
+    <div class="row my-4">
+        <div class="col-12 col-sm-4">
+            <select id="select-perfil" class="form-control" required>
+                <option value="">Elija a quien inscribir...</option>
+                @foreach ($perfiles as $perfil)
+                    <option value="{{ $perfil->id }}">{{ $perfil->nombre.' '.$perfil->apellido.' - '.$perfil->email}}</option>
+                @endforeach
+
+                <?php
+                    /**
+                    $perfil_query = mysqli_query($db,
+                        "SELECT id, nombre, apellido, email
+                        FROM perfil
+                        WHERE id NOT IN(
+                            SELECT fk_perfil
+                            FROM inscripcion
+                            WHERE fk_evento = $idEvento)
+                        ORDER BY nombre, apellido ASC;");
+                    while ($perfil = mysqli_fetch_array($perfil_query))
+                        echo "<option value='".$perfil['id']."'>".
+                            $perfil['nombre']." ".$perfil['apellido']." - ".$perfil['email'].
+                            "</option>";
+                    */
+                ?>
+            </select>
+        </div>
+
+        <div class="col-12 col-sm-4 mt-3 mt-sm-0">
+            <select id="select-tipo" class="form-control" required>
+                <option value="">Participa como...</option>
+                @foreach ($caracteres as $caracter)
+                    <option value="{{ $caracter->caracter }}">{{ $caracter->caracter }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mt-3 mt-sm-0 col-sm-4">
+            <button id="boton-inscribir" class="btn btn-primary" type="button" disabled>Inscribir</button>
+        </div>
+    </div>
 @endsection
 
 @section('post-scripts')

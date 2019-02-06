@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
-use Illuminate\Http\Request;
+use App\Perfil;
+use App\Caracter;
 use App\Provincia;
+use Illuminate\Http\Request;
 
 class EventosController extends Controller
 {
@@ -82,7 +84,9 @@ class EventosController extends Controller
     public function administrar(Evento $evento)
     {
         $provincias = Provincia::orderBy('nombre')->get();
-        return view('eventos.administrar', compact('evento', 'provincias'));
+        $perfiles = Perfil::orderBY('nombre')->get();
+        $caracteres = Caracter::all();
+        return view('eventos.administrar', compact('evento', 'provincias', 'perfiles', 'caracteres'));
     }
 
     /**
