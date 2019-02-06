@@ -41,11 +41,15 @@ $(document).ready(function(){
         var idEvento = $('#id_evento').attr('valor');
         var idPerfil = $('#select-perfil').val();
         var tipo = $('#select-tipo').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             type: 'POST',
-            url: 'lib/manejador-inscripciones.php',
+            url: '/inscripciones',
             data: {
-                accion: "A",
                 idEvento: idEvento,
                 idPerfil: idPerfil,
                 tipo: tipo
@@ -60,13 +64,14 @@ $(document).ready(function(){
     $('#body-inscripciones').on('click', '.eliminar-inscripcion', function(){
         if (confirm("¿Está seguro que desea eliminar la inscripción indicada?")){
             var idInscrip = $(this).attr('valor');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
-                type: 'POST',
-                url: 'lib/manejador-inscripciones.php',
-                data: {
-                    accion: "B",
-                    idInscrip: idInscrip,
-                },
+                type: 'DELETE',
+                url: '/inscripciones/' + idInscrip,
                 success:function(){
                     var inscrip = "#inscripcion-" + idInscrip;
                     $(inscrip).remove();
@@ -105,13 +110,16 @@ $(document).ready(function(){
     $('#body-inscripciones').on('change', '.select-asistencia', function(){
         var idInscrip = $(this).attr('valor');
         var asistencia = $(this).val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
-            type: 'POST',
-            url: 'lib/manejador-inscripciones.php',
+            type: 'PATCH',
+            url: '/inscripciones/' + idInscrip,
             data: {
-                accion: "M",
-                idInscrip: idInscrip,
-                asistencia: asistencia,
+                asistencia: asistencia
             },
             success:function(){
                 var emitirBoton = "#emitir-i" + idInscrip;

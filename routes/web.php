@@ -34,5 +34,9 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'eventos' => 'evento'
     ]])->except(['show', 'edit']);
 
+    Route::resource('inscripciones', 'InscripcionesController', ['parameters' => [
+        'inscripciones' => 'inscripcion'
+    ]])->only(['store', 'update', 'destroy']);
+
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });

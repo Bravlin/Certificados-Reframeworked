@@ -17,7 +17,7 @@ class CreateInscripcionTable extends Migration
             $table->increments('id_inscripcion');
             $table->string('tipo', 12);
             $table->dateTime('fecha_inscripcion')->useCurrent();
-            $table->tinyInteger('asistencia')->nullable();
+            $table->tinyInteger('asistencia')->default(-1);
             $table->integer('fk_perfil');
             $table->integer('fk_evento');
 

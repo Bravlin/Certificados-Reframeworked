@@ -145,23 +145,6 @@
                 @foreach ($perfiles as $perfil)
                     <option value="{{ $perfil->id }}">{{ $perfil->nombre.' '.$perfil->apellido.' - '.$perfil->email}}</option>
                 @endforeach
-
-                <?php
-                    /**
-                    $perfil_query = mysqli_query($db,
-                        "SELECT id, nombre, apellido, email
-                        FROM perfil
-                        WHERE id NOT IN(
-                            SELECT fk_perfil
-                            FROM inscripcion
-                            WHERE fk_evento = $idEvento)
-                        ORDER BY nombre, apellido ASC;");
-                    while ($perfil = mysqli_fetch_array($perfil_query))
-                        echo "<option value='".$perfil['id']."'>".
-                            $perfil['nombre']." ".$perfil['apellido']." - ".$perfil['email'].
-                            "</option>";
-                    */
-                ?>
             </select>
         </div>
 
@@ -177,6 +160,30 @@
         <div class="mt-3 mt-sm-0 col-sm-4">
             <button id="boton-inscribir" class="btn btn-primary" type="button" disabled>Inscribir</button>
         </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Fecha de inscripción</th>
+                    <th scope="col">Participación</th>
+                    <th scope="col">Asistencia</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody id="body-inscripciones">
+                @foreach ($evento->inscripciones as $inscripcion)
+                    @include('eventos.inscripciones.fila')
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection
 
