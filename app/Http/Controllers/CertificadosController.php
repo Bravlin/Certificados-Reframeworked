@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Certificado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Evento;
+use App\Perfil;
 
 class CertificadosController extends Controller
 {
@@ -17,6 +19,32 @@ class CertificadosController extends Controller
     {
         try {
             $certificados = Certificado::juntada(['evento_nombre', 'perfil_nombre', 'perfil_apellido']);
+            return view('certificados.index', compact('certificados'));
+        } catch (\Throwable $th) {
+            abort(500);
+        }
+    }
+
+    public function indexEvento(Evento $evento)
+    {
+        try {
+            $certificados = Certificado::juntada(
+                ['perfil_nombre', 'perfil_apellido'],
+                [['evento.id_evento', '=', (string) $evento->id_evento]]
+            );
+            return view('certificados.index', compact('certificados'));
+        } catch (\Throwable $th) {
+            abort(500);
+        }
+    }
+
+    public function indexPerfil(Perfil $perfil)
+    {
+        try {
+            $certificados = Certificado::juntada(
+                ['evento_nombre'],
+                [['perfil.id', '=', (string) $perfil->id]]
+            );
             return view('certificados.index', compact('certificados'));
         } catch (\Throwable $th) {
             abort(500);

@@ -136,6 +136,27 @@
         </div>
     </form>
 
+    <h3 class="mb-3">Certificados</h3>
+
+    <label for="template">Template de certificado</label>
+    <div class="row">
+        <div class="col-12 col-sm-8">
+            <input id="template" name="template" type="file" class="form-control">
+        </div>
+
+        <div class="col-12 col-sm-4 align-self-center">
+            <button id="subir-template" class="mt-2 mt-sm-0 btn ficertifButton">Subir</button>
+        </div>
+    </div>
+
+    <div class="my-4">
+        <button id="generar-todos" class="btn btn-primary mb-2" type="button">Generar todos</button>
+        <button id="email-todos" class="btn btn-success ml-0 ml-sm-2 mb-2" type="button"  data-toggle="modal" data-target="#modal-mail">Email a todos</button>
+        <a class="btn btn-secondary ml-0 ml-sm-2 mb-2" href="{{ route('eventos.certificados', $evento->id_evento) }}">
+            Consultar
+        </a>
+    </div>
+
     <h3 class="mb-4">Inscripciones</h3>
 
     <div class="row my-4">

@@ -38,6 +38,8 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'inscripciones' => 'inscripcion'
     ]])->only(['store', 'update', 'destroy']);
 
+    Route::get('/eventos/{evento}/certificados', 'CertificadosController@indexEvento')->name('eventos.certificados');
+    Route::get('/perfiles/{perfil}/certificados', 'CertificadosController@indexPerfil')->name('perfiles.certificados');
     Route::resource('certificados', 'CertificadosController', ['parameters' => [
         'certificados' => 'certificado'
     ]])->except(['show', 'create', 'edit']);
