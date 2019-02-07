@@ -179,7 +179,13 @@
             </thead>
 
             <tbody id="body-inscripciones">
-                @foreach ($evento->inscripciones as $inscripcion)
+                @foreach (
+                    $evento->inscripciones()->
+                    join('perfil', 'inscripcion.fk_perfil', 'perfil.id')
+                    ->select('inscripcion.*', 'perfil.nombre', 'perfil.apellido', 'perfil.email')
+                    ->orderBy('nombre')
+                    ->get() as $inscripcion
+                )
                     @include('eventos.inscripciones.fila')
                 @endforeach
             </tbody>

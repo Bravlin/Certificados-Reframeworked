@@ -38,5 +38,9 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'inscripciones' => 'inscripcion'
     ]])->only(['store', 'update', 'destroy']);
 
+    Route::resource('certificados', 'CertificadosController', ['parameters' => [
+        'certificados' => 'certificado'
+    ]])->except(['show', 'create', 'edit']);
+
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });
