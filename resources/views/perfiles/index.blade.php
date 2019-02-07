@@ -43,7 +43,7 @@
                 <div id="perfil-{{ $perfil->id }}" class="col-12 col-lg-6 mb-5 px-0">
                     <div class="row item-perfil mx-auto border border-secondary">
                         <div class="col-12 col-sm-4 contenedor-imagen px-0 py-3 py-sm-0">
-                            <a href="certificados.php?idPerfil={{ $perfil->id }}">
+                            <a href="{{ route('perfiles.certificados', $perfil->id) }}">
                                 <img class="imagen-perfil" alt="Perfil"
                                     src=
                                         @if (Storage::disk('public')->exists('media/perfiles-usuarios/'.$perfil->id.'-perfil'))
@@ -57,7 +57,7 @@
 
                         <div class="col-12 col-sm-8 px-0 contenedor-info">
                             <div class="contenedor-nombre px-4">
-                                <a class="nombre-apellido" href="certificados.php?idPerfil={{ $perfil->id }}">
+                                <a class="nombre-apellido" href="{{ route('perfiles.certificados', $perfil->id) }}">
                                     <h4 class="text-center">{{ $perfil->nombre }} {{ $perfil->apellido }}</h4>
                                 </a>
                             </div>

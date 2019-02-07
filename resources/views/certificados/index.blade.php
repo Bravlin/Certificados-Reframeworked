@@ -52,5 +52,5 @@
 @endsection
 
 @section('post-scripts')
-    <script type="text/javascript" src="js/manejador-certificados.js"></script>
+    <script type="text/javascript" src="/js/manejador-certificados.js"></script>
 @endsection
