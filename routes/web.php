@@ -40,9 +40,10 @@ Route::group(['middleware' => 'administrador_auth'], function() {
 
     Route::get('/eventos/{evento}/certificados', 'CertificadosController@indexEvento')->name('eventos.certificados');
     Route::get('/perfiles/{perfil}/certificados', 'CertificadosController@indexPerfil')->name('perfiles.certificados');
+    Route::post('/certificados/inscripciones/{inscripcion}', 'CertificadosController@generarIndividual')->name('certificados.generar');
     Route::resource('certificados', 'CertificadosController', ['parameters' => [
         'certificados' => 'certificado'
-    ]])->except(['show', 'create', 'edit']);
+    ]])->only(['index', 'update', 'destroy']);
 
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });

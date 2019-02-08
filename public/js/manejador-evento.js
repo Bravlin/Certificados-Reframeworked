@@ -195,13 +195,14 @@ $(document).ready(function(){
         }
         else if (!$('#emitir-uno').attr('hidden')){
             var idInscrip = $('#emitir-uno').attr('valor');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 type: 'POST',
-                url: 'lib/manejador-certificados.php',
-                data: {
-                    accion: "I",
-                    idInscrip: idInscrip,
-                },
+                url: '/certificados/inscripciones/' + idInscrip,
                 success:function(){
                     $.ajax({
                         type: 'POST',
@@ -215,7 +216,6 @@ $(document).ready(function(){
             });
         }
     });
-
 
     $('#body-inscripciones').on('click', '.email-ind', function(){
         var idInscrip = $(this).attr('valor');
