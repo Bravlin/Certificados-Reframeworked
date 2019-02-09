@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+define("URL","http://www3.fi.mdp.edu.ar/cibercrimen/verificacion.php?verif=");
+
+set_include_path(app_path().'/Librerias');
+
+require_once 'fpdf.php';
+require_once 'fpdi/autoload.php';
+require_once 'phpqrcode/qrlib.php';
+
 use App\Evento;
 use App\Perfil;
 use App\Certificado;
@@ -25,7 +33,7 @@ class CertificadosController extends Controller
         // add a page
         $pdf->AddPage();
         // set the source file
-        $pdf->setSourceFile('../Template/CERT.asistencia ciberdefensa.pdf');
+        $pdf->setSourceFile(public_path().'/storage/templates/CERT.asistencia_ciberdefensa.pdf');
         // import page 1
         $tplIdx = $pdf->importPage(1);
         // use the imported page and place it at position 10,10 with a width of 100 mm
@@ -68,7 +76,7 @@ class CertificadosController extends Controller
         $jpegQuality = 95;
 
         // generating frame
-        $frame = QRcode::text($codeContents, false, QR_ECLEVEL_M);
+        $frame = \QRcode::text($codeContents, false, QR_ECLEVEL_M);
 
         // rendering frame with GD2 (that should be function by real impl.!!!)
         $h = count($frame);
@@ -78,9 +86,9 @@ class CertificadosController extends Controller
         $imgH = $h + 2*$outerFrame;
 
         $base_image = imagecreate($imgW, $imgH);
-        $logo = imagecreatefrompng("../img/logofi2.png");
+        $logo = imagecreatefrompng("img/logofi2.png");
 
-        $h_logo = count($logo);
+        $h_logo = imagesy($logo);
         $w_logo = strlen($logo[0]);
 
         $imgW_logo = $w_logo + 2*$outerFrame;
@@ -204,8 +212,8 @@ class CertificadosController extends Controller
                 $file = preg_replace("/[^a-zA-Z0-9\_\-]+/", "_", $file);
                 $file = $file.".pdf";
 
-                $pdf->Output('F', Storage::url('tmp/'.$file));
-                $pdf->Output('F', Storage::url('certificados/'.$file));
+                $pdf->Output('F', public_path().'/storage/tmp/'.$file);
+                $pdf->Output('F', public_path().'/storage/certificados/'.$file);
 
                 $bId = $id;
                 $bNombreCertificado = $file;
