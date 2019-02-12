@@ -8,7 +8,7 @@
 
 @section('contenido')
     <div class="form-container col-10 col-lg-8 py-5 px-1 px-sm-3 row justify-content-center mx-auto">
-        <form class="formulario-principal color-blanco" method="POST" enctype="multipart/form-data">
+        <form class="formulario-principal color-blanco" method="POST" action="/perfiles/agregar-masivo" enctype="multipart/form-data">
             @csrf
 
             <h1 class="text-center">Agregar varios</h1>
@@ -42,16 +42,22 @@
                 </div>
 
                 <div class="col-12 col-sm-4">
-                    <select id="select-asistencia" name="select-asistencia" class="form-control" required>
-                        <option value="Presente">Presente</option>
-                        <option value="Ausente">Ausente</option>
+                    <select id="select-asistencia" name="asistencia" class="form-control" required>
+                        <option value="1">Presente</option>
+                        <option value="0">Ausente</option>
                     </select>
                 </div>
             </div>
 
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-3">
                 <button id="enviar" class="btn ficertifButton" type="submit">Enviar archivo</button>
             </div>
         </form>
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p class="alerta col-12">{{ $error }}</p>
+            @endforeach
+        @endif
     </div>
 @endsection

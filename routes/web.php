@@ -25,7 +25,9 @@ Route::group(['middleware' => 'administrador_guest'], function() {
 Route::group(['middleware' => 'administrador_auth'], function() {
     Route::get('/', 'InicioController@index');
 
-    Route::get('/perfiles/agregar-varios', 'PerfilesController@agregarVarios')->name('perfiles.agregar-varios');
+    Route::get('/perfiles/agregar-masivo', 'InscripcionMasivaController@agregarMasivo')->name('perfiles.agregar-masivo');
+    Route::post('/perfiles/agregar-masivo', 'InscripcionMasivaController@storeOrUpdateMasivo')->name('pefiles.store-update-masivo');
+
     Route::resource('perfiles', 'PerfilesController', ['parameters' => [
         'perfiles' => 'perfil'
     ]])->except(['show']);

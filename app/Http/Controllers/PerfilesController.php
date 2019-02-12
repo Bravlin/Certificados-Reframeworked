@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Evento;
 use App\Perfil;
-use App\Caracter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class PerfilesController extends Controller
 {
@@ -32,18 +29,6 @@ class PerfilesController extends Controller
     }
 
     /**
-     * Muestra el formulario para inscribir perfiles de forma masiva.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function agregarVarios()
-    {
-        $eventos = Evento::select('id_evento', 'nombre')->orderBy('nombre')->get();
-        $caracteres = Caracter::all();
-        return view('perfiles.agregar-varios', compact('eventos', 'caracteres'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -61,31 +46,6 @@ class PerfilesController extends Controller
         ]);
         Perfil::create($atributos);
         return redirect('/perfiles');
-    }
-
-    public function storeOrUpdateVarios(Request $request)
-    {
-        $request->validate([
-            'csvFile' => 'required|file|mimes:csv',
-            'evento' => 'required|exists:evento',
-            'tipo' => 'required|exists:caracter'
-        ]);
-
-        Log::info('Procesando archivo para inscripción masiva.');
-        $csv = $request('csvFile');
-        $ruta = $csv->storeAs('tmp', $csv->getClientOriginalName(), 'public');
-        if ($ruta === false) {
-            Log::error('Error al subir el archivo.');
-            abort(500);
-        } else {
-            $gestor = fopen($ruta, "r");
-            if ($gestor === false) {
-                Log::error('Error al tratar de abrir el archivo.');
-                abort(500);
-            } else {
-
-            }
-        }
     }
 
     /**

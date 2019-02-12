@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Caracter;
 use App\Inscripcion;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class InscripcionesController extends Controller
 {
