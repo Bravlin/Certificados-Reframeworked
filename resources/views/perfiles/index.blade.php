@@ -31,7 +31,7 @@
             </a>
             </div>
         <div class="mb-3 col-sm">
-            <a href="/perfiles/agregar-varios" class="agregar-perfil">
+            <a href="/perfiles/agregar-masivo" class="agregar-perfil">
                 <i class="fa fa-plus-circle mr-1"></i>Agregar varios
             </a>
         </div>
