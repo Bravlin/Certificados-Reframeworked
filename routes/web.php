@@ -25,6 +25,7 @@ Route::group(['middleware' => 'administrador_guest'], function() {
 Route::group(['middleware' => 'administrador_auth'], function() {
     Route::get('/', 'InicioController@index');
 
+    Route::get('/perfiles/agregar-varios', 'PerfilesController@agregarVarios')->name('perfiles.agregar-varios');
     Route::resource('perfiles', 'PerfilesController', ['parameters' => [
         'perfiles' => 'perfil'
     ]])->except(['show']);

@@ -69,9 +69,7 @@ class EventosController extends Controller
             'fecha_creacion' => date("Y-m-d H:i:s")
         ]);
         if ($request->hasFile('portada'))
-            $path = $request->file('portada')->storeAs(
-                'media/portadas-eventos', $nuevoEvento->id_evento.'-p', 'public'
-            );
+            $request->file('portada')->storeAs('media/portadas-eventos', $nuevoEvento->id_evento.'-p', 'public');
         return redirect('/eventos');
     }
 
