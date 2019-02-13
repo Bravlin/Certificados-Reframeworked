@@ -65,13 +65,10 @@ class InscripcionMasivaController extends Controller
 
     private function validarPerfil($campos)
     {
-        $datosCorrectos = true;
-        foreach ($campos as $campo) {
-            $datosCorrectos = $campo != '';
-            if (!$datosCorrectos)
-                break;
-        }
-        return $datosCorrectos && ValidadorMail::superValidateEmail($campos['email']);
+        $iterator = new \ArrayIterator($campos);
+        while ($iterator->valid() && $iterator->current() != '')
+            $iterator->next();
+        return !$iterator->valid() && $iterator->offsetExists('email') && ValidadorMail::superValidateEmail($iterator->offsetGet('email'));
     }
 
     /**
