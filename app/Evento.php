@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Inscripcion;
 use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model
@@ -39,5 +40,10 @@ class Evento extends Model
     public function inscripciones()
     {
         return $this->hasMany('App\Inscripcion', 'fk_evento', 'id_evento');
+    }
+
+    public function inscripcionesAsistentes()
+    {
+        return Inscripcion::where('asistencia', '=', Inscripcion::ASISTIO)->get();
     }
 }

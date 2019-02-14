@@ -149,13 +149,14 @@ $(document).ready(function(){
 
     $('#generar-todos').on('click', function(){
         var idEvento = $('#id_evento').attr('valor');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             type: 'POST',
-            url: 'lib/manejador-certificados.php',
-            data: {
-                accion: "A",
-                idEvento: idEvento,
-            },
+            url: '/eventos/' + idEvento + '/certificados',
             success:function(){
                 alert("Certificados generados.");
             }
