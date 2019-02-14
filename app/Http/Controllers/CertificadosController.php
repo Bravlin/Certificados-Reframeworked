@@ -59,9 +59,8 @@ class CertificadosController extends Controller
         $pdf->SetFont('Arial','B',12);
         $text = "Codigo Verificaci".hex2bin("c3b3")."n: ".$param;
         echo mb_detect_encoding($text)."<br>";
-        if (mb_detect_encoding($text) == "ASCII") {
+        if (mb_detect_encoding($text) == "ASCII")
             $text = utf8_encode($text);
-        }
 
         $pdf->SetXY(140 - $pdf->GetStringWidth($text)/2, 145);
         $pdf->Write(0, utf8_decode($text),$codeText);
@@ -99,13 +98,10 @@ class CertificadosController extends Controller
 
         imagefill($base_image, 0, 0, $col[0]);
 
-        for ($y=0; $y<$h; $y++) {
-            for ($x=0; $x<$w; $x++) {
-                if ($frame[$y][$x] == '1') {
+        for ($y=0; $y<$h; $y++)
+            for ($x=0; $x<$w; $x++)
+                if ($frame[$y][$x] == '1')
                     imagesetpixel($base_image,$x+$outerFrame,$y+$outerFrame,$col[1]);
-                }
-            }
-        }
 
         // saving to file
         $target_image = imagecreate($imgW * $pixelPerPoint, $imgH * $pixelPerPoint);
@@ -143,6 +139,41 @@ class CertificadosController extends Controller
         ob_end_clean();
         imagedestroy($target_image);
         return $imagedata;
+    }
+
+    private function crearCertificado(Inscripcion $inscripcion)
+    {
+        $id = $inscripcion->id_inscripcion;
+        $nombre = ucwords(strtolower($inscripcion->perfil->nombre));
+        $apellido = ucwords(strtolower($inscripcion->perfil->apellido));
+        $apiNombre = preg_replace('/\s+/', ' ', $nombre." ".$apellido);
+        $apiNombre = utf8_decode($apiNombre);
+
+        // Esta pregunta es contradictoria con el updateOrCreate
+        if (Certificado::where('fk_inscripcion', $id)->count() == 0) {
+            $param = $id.rand(1000, 9999);
+            $param = str_pad($param, 8, '0', STR_PAD_LEFT);
+
+            $pdf = $this->genPdf($apiNombre, $param);
+            $file = "Certificado_jornada_cibercrimen_". utf8_decode(str_replace(' ', '_', $apiNombre));
+            $file = preg_replace("/[^a-zA-Z0-9\_\-]+/", "_", $file);
+            $file = $file.".pdf";
+
+            $pdf->Output('F', public_path().'/storage/tmp/'.$file);
+            $pdf->Output('F', public_path().'/storage/certificados/'.$file);
+
+            $bId = $id;
+            $bNombreCertificado = $file;
+            $bAleatorio = $param;
+            Certificado::updateOrCreate(
+                ['fk_inscripcion' => $bId],
+                [
+                    'fk_inscripcion' => $bId,
+                    'nombre_certificado' => $bNombreCertificado,
+                    'aleatorio' => $bAleatorio
+                ]
+            );
+        }
     }
 
     /**
@@ -189,45 +220,26 @@ class CertificadosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Inscripcion  $inscripcion
+     * @param  \App\Inscripcion  $inscripcion
      */
     public function generarIndividual(Inscripcion $inscripcion)
     {
-        if ($inscripcion->asistencia != 1)
+        if (!$inscripcion->asistio())
             abort(409);
-        else {
-            $id = $inscripcion->id_inscripcion;
-            $nombre = ucwords(strtolower($inscripcion->perfil->nombre));
-            $apellido = ucwords(strtolower($inscripcion->perfil->apellido));
-            $apiNombre = preg_replace('/\s+/', ' ', $nombre." ".$apellido);
-            $apiNombre = utf8_decode($apiNombre);
+        else
+            $this->crearCertificado($inscripcion);
+    }
 
-            // Esta pregunta es contradictoria con el updateOrCreate
-            if (Certificado::where('fk_inscripcion', $id)->count() == 0) {
-                $param = $id.rand(1000, 9999);
-                $param = str_pad($param, 8, '0', STR_PAD_LEFT);
-
-                $pdf = $this->genPdf($apiNombre, $param);
-                $file = "Certificado_jornada_cibercrimen_". utf8_decode(str_replace(' ', '_', $apiNombre));
-                $file = preg_replace("/[^a-zA-Z0-9\_\-]+/", "_", $file);
-                $file = $file.".pdf";
-
-                $pdf->Output('F', public_path().'/storage/tmp/'.$file);
-                $pdf->Output('F', public_path().'/storage/certificados/'.$file);
-
-                $bId = $id;
-                $bNombreCertificado = $file;
-                $bAleatorio = $param;
-                Certificado::updateOrCreate(
-                    ['fk_inscripcion' => $bId],
-                    [
-                        'fk_inscripcion' => $bId,
-                        'nombre_certificado' => $bNombreCertificado,
-                        'aleatorio' => $bAleatorio
-                    ]
-                );
-            }
-        }
+    /**
+     * Crea un certificado por cada uno de los asistentes al evento.
+     *
+     * @param \App\Evento  $Evento
+     */
+    public function generarTodos(Evento $evento)
+    {
+        $inscripciones = $evento->inscripcionesAsistentes();
+        foreach ($inscripciones as $inscripcion)
+            $this->crearCertificado($inscripcion);
     }
 
     /**
@@ -254,8 +266,7 @@ class CertificadosController extends Controller
         if (Storage::disk('public')->exists($archivo)) {
             Storage::disk('public')->delete('certificados/'.$certificado->nombre_certificado);
             $certificado->delete();
-        }
-        else
+        } else
             abort(500);
     }
 }

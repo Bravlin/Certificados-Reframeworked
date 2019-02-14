@@ -42,8 +42,9 @@ Route::group(['middleware' => 'administrador_auth'], function() {
     ]])->only(['store', 'update', 'destroy']);
 
     Route::get('/eventos/{evento}/certificados', 'CertificadosController@indexEvento')->name('eventos.certificados');
+    Route::post('/eventos/{evento}/certificados', 'CertificadosController@generarTodos')->name('certificados.generar_todos');
     Route::get('/perfiles/{perfil}/certificados', 'CertificadosController@indexPerfil')->name('perfiles.certificados');
-    Route::post('/certificados/inscripciones/{inscripcion}', 'CertificadosController@generarIndividual')->name('certificados.generar');
+    Route::post('/certificados/inscripciones/{inscripcion}', 'CertificadosController@generarIndividual')->name('certificados.generar_individual');
     Route::resource('certificados', 'CertificadosController', ['parameters' => [
         'certificados' => 'certificado'
     ]])->only(['index', 'update', 'destroy']);
