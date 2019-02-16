@@ -49,5 +49,9 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'certificados' => 'certificado'
     ]])->only(['index', 'update', 'destroy']);
 
+    Route::prefix('emails')->group(function () {
+        Route::post('/inscripciones/{inscripcion}', 'MailController@envioCertificadoIndividual')->name('emails.certificado_individual');
+    });
+
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });

@@ -185,6 +185,11 @@ $(document).ready(function(){
         var datosMail = $(this).serialize();
         if (!$('#emitir-todos').attr('hidden')){
             var idEvento = $('#id_evento').attr('valor');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 type: 'POST',
                 url: 'lib/manejador-email.php',
@@ -205,10 +210,15 @@ $(document).ready(function(){
                 type: 'POST',
                 url: '/certificados/inscripciones/' + idInscrip,
                 success:function(){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
                     $.ajax({
                         type: 'POST',
-                        url: 'lib/manejador-email.php',
-                        data: datosMail + '&accion=I&idInscrip=' + idInscrip,
+                        url: '/emails/inscripciones/' +idInscrip,
+                        data: datosMail,
                         success:function(){
                             alert("Certificado enviado con éxito.")
                         }
