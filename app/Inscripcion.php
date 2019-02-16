@@ -26,8 +26,13 @@ class Inscripcion extends Model
         return $this->belongsTo('App\Evento', 'fk_evento', 'id_evento');
     }
 
+    public function certificado()
+    {
+        return $this->hasOne('App\Certificado', 'fk_inscripcion', 'id_inscripcion');
+    }
+
     public function asistio()
     {
-        $this->asistencia == Inscripcion::ASISTIO;
+        return $this->asistencia == Inscripcion::ASISTIO;
     }
 }

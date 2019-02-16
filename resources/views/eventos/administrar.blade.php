@@ -238,7 +238,7 @@
 
                         <div class="col-12 elemento-form mb-2">
                             <label for="cuerpo-mail">Mensaje</label>
-                            <textarea id="cuerpo-mail" name="cuerpo-mail" type="text" class="form-control" placeholder="Cuerpo del mensaje..." required></textarea>
+                            <textarea id="cuerpo-mail" name="cuerpo_mail" type="text" class="form-control" placeholder="Cuerpo del mensaje..." required></textarea>
                         </div>
                     </div>
 

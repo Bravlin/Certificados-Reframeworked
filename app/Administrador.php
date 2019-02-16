@@ -13,4 +13,9 @@ class Administrador extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     public $timestamps = false;
+
+    public function preferredLocale()
+    {
+        return 'es';
+    }
 }

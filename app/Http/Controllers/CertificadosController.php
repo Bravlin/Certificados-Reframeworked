@@ -196,7 +196,7 @@ class CertificadosController extends Controller
         try {
             $certificados = Certificado::juntada(
                 ['perfil_nombre', 'perfil_apellido'],
-                [['evento.id_evento', '=', (string) $evento->id_evento]]
+                [['evento.id_evento', '=', $evento->id_evento]]
             );
             return view('certificados.index', compact('certificados'));
         } catch (\Throwable $th) {
@@ -209,7 +209,7 @@ class CertificadosController extends Controller
         try {
             $certificados = Certificado::juntada(
                 ['evento_nombre'],
-                [['perfil.id', '=', (string) $perfil->id]]
+                [['perfil.id', '=', $perfil->id]]
             );
             return view('certificados.index', compact('certificados'));
         } catch (\Throwable $th) {
@@ -263,10 +263,8 @@ class CertificadosController extends Controller
     public function destroy(Certificado $certificado)
     {
         $archivo = 'certificados/'.$certificado->nombre_certificado;
-        if (Storage::disk('public')->exists($archivo)) {
+        if (Storage::disk('public')->exists($archivo))
             Storage::disk('public')->delete('certificados/'.$certificado->nombre_certificado);
-            $certificado->delete();
-        } else
-            abort(500);
+        $certificado->delete();
     }
 }
