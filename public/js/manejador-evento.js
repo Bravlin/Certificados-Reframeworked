@@ -217,7 +217,7 @@ $(document).ready(function(){
                     });
                     $.ajax({
                         type: 'POST',
-                        url: '/emails/inscripciones/' +idInscrip,
+                        url: '/emails/inscripciones/' + idInscrip,
                         data: datosMail,
                         success:function(){
                             alert("Certificado enviado con éxito.")
