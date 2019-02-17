@@ -11,7 +11,7 @@ class EnvioCertificado extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $rutaCertificado;
+    private $nombreCertificado;
     private $remitente;
     private $asunto;
 
@@ -22,12 +22,12 @@ class EnvioCertificado extends Mailable
      *
      * @return void
      */
-    public function __construct($remitente, $asunto, $cuerpo, $rutaCertificado)
+    public function __construct($remitente, $asunto, $cuerpo, $nombreCertificado)
     {
         $this->remitente = $remitente;
         $this->asunto = $asunto;
         $this->cuerpo = $cuerpo;
-        $this->rutaCertificado = $rutaCertificado;
+        $this->nombreCertificado = $nombreCertificado;
     }
 
     /**
@@ -38,8 +38,8 @@ class EnvioCertificado extends Mailable
     public function build()
     {
         return $this->from($this->remitente)
-            ->subject($this->asunto)
-            ->attach($this->rutaCertificado)
-            ->view('emails.enviar-certificado');
+            ->markdown('emails.enviar-certificado')
+            ->attachFromStorageDisk('public', 'certificados/'.$this->nombreCertificado)
+            ->subject($this->asunto);
     }
 }
