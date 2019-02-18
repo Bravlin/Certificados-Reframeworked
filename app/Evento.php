@@ -44,6 +44,6 @@ class Evento extends Model
 
     public function inscripcionesAsistentes()
     {
-        return Inscripcion::where('asistencia', '=', Inscripcion::ASISTIO)->get();
+        return $this->inscripciones->where('asistencia', '=', Inscripcion::ASISTIO);
     }
 }

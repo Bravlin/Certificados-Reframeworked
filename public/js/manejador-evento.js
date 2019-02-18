@@ -192,8 +192,8 @@ $(document).ready(function(){
             });
             $.ajax({
                 type: 'POST',
-                url: 'lib/manejador-email.php',
-                data: datosMail + '&accion=T&idEvento=' + idEvento,
+                url: '/emails/eventos/' + idEvento,
+                data: datosMail,
                 success:function(){
                     alert("Certificados enviados.");
                 }

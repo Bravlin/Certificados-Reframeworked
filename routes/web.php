@@ -51,6 +51,7 @@ Route::group(['middleware' => 'administrador_auth'], function() {
 
     Route::prefix('emails')->group(function () {
         Route::post('/inscripciones/{inscripcion}', 'MailController@envioCertificadoIndividual')->name('emails.certificado_individual');
+        Route::post('/eventos/{evento}', 'MailController@envioCertificadosMasivo')->name('emails.certificados_masivo');
     });
 
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
