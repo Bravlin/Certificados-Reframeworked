@@ -14,7 +14,7 @@
 }
 
 .contenedor-imagen{
-    height: 210px; 
+    height: 210px;
     background-color: var(--ing-verde);
 }
 
@@ -42,7 +42,7 @@
     .nombre-apellido{
         font-size: 1.25em;
     }
-    
+
     .imagen-perfil{
         object-fit: contain;
     }
@@ -52,17 +52,7 @@
     .nombre-apellido{
         font-size: 1.5em;
     }
-    
-    .imagen-perfil{
-        object-fit: cover;
-    }
-}
 
-@media screen and (min-width: 1200px){
-    .nombre-apellido{
-        font-size: 1.5em;
-    }
-    
     .imagen-perfil{
         object-fit: cover;
     }
@@ -72,6 +62,7 @@
     }
 
     .contenedor-info{
+        height: 100%;
         overflow-y: auto;
     }
 }
