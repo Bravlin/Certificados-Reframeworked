@@ -83,6 +83,6 @@
     @endif
 @endsection
 
-@section('post-scripts')
+@section('pos-scripts')
     <script type="text/javascript" src="/js/manejador-perfil.js"></script>
 @endsection

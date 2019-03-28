@@ -27,13 +27,14 @@ class CertificadosController extends Controller
     * F: save to a local file with the name given by name (may include a path).
     * S: return the document as a string.
     */
-    private function genPdf($nombre, $param) {
+    private function genPdf($nombre, $param, $source)
+    {
         // initiate FPDI
         $pdf = new Fpdi('L','mm','A4');;
         // add a page
         $pdf->AddPage();
         // set the source file
-        $pdf->setSourceFile(public_path().'/storage/templates/CERT.asistencia_ciberdefensa.pdf');
+        $pdf->setSourceFile($source);
         // import page 1
         $tplIdx = $pdf->importPage(1);
         // use the imported page and place it at position 10,10 with a width of 100 mm
@@ -68,7 +69,8 @@ class CertificadosController extends Controller
         return $pdf;
     }
 
-    private function grGenerator($url) {
+    private function grGenerator($url)
+    {
         $codeContents = $url;
         $outerFrame = 4;
         $pixelPerPoint = 5;
@@ -154,8 +156,9 @@ class CertificadosController extends Controller
             $param = $id.rand(1000, 9999);
             $param = str_pad($param, 8, '0', STR_PAD_LEFT);
 
-            $pdf = $this->genPdf($apiNombre, $param);
-            $file = "Certificado_jornada_cibercrimen_". utf8_decode(str_replace(' ', '_', $apiNombre));
+            $template = public_path().'/storage/templates/CERT.'.$inscripcion->fk_evento.'.pdf';
+            $pdf = $this->genPdf($apiNombre, $param, $template);
+            $file = "Certificado_".$inscripcion->fk_evento."_".utf8_decode(str_replace(' ', '_', $apiNombre));
             $file = preg_replace("/[^a-zA-Z0-9\_\-]+/", "_", $file);
             $file = $file.".pdf";
 
@@ -266,5 +269,13 @@ class CertificadosController extends Controller
         if (Storage::disk('public')->exists($archivo))
             Storage::disk('public')->delete('certificados/'.$certificado->nombre_certificado);
         $certificado->delete();
+    }
+
+    public function cargarTemplate(Request $request, Evento $evento)
+    {
+        $request->validate([
+            'template' => 'required|mimes:pdf'
+        ]);
+        $request->file('template')->storeAs('templates', 'CERT.'.$evento->id_evento.'.pdf', 'public');
     }
 }
