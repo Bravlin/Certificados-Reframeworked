@@ -41,6 +41,8 @@ Route::group(['middleware' => 'administrador_auth'], function() {
         'inscripciones' => 'inscripcion'
     ]])->only(['store', 'update', 'destroy']);
 
+    // Rutas referidas a certificados
+    Route::post('/eventos/{evento}/template', 'CertificadosController@cargarTemplate')->name('eventos.template');
     Route::get('/eventos/{evento}/certificados', 'CertificadosController@indexEvento')->name('eventos.certificados');
     Route::post('/eventos/{evento}/certificados', 'CertificadosController@generarTodos')->name('certificados.generar_todos');
     Route::get('/perfiles/{perfil}/certificados', 'CertificadosController@indexPerfil')->name('perfiles.certificados');

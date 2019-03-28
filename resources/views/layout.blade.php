@@ -95,6 +95,6 @@
         </div>
     </footer>
 
-    @yield('post-scripts')
+    @yield('pos-scripts')
 </body>
 </html>

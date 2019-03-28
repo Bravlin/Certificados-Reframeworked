@@ -131,18 +131,21 @@ $(document).ready(function(){
     $('#subir-template').on('click', function(){
         var idEvento = $('#id_evento').attr('valor');
         var formData = new FormData();
-        formData.append("accion", "T");
-        formData.append("idEvento", idEvento);
         formData.append('template', $('input[type=file]')[0].files[0]);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             type: 'POST',
-            url: 'lib/manejador-certificados.php',
+            url: '/eventos/' + idEvento + '/template',
             cache: false,
             contentType: false,
             processData: false,
             data: formData,
-            success: function(html){
-                alert(html);
+            success: function(){
+                alert('Template subido correctamente.');
             }
         });
     });
@@ -158,7 +161,7 @@ $(document).ready(function(){
             type: 'POST',
             url: '/eventos/' + idEvento + '/certificados',
             success:function(){
-                alert("Certificados generados.");
+                alert('Certificados generados.');
             }
         });
     });

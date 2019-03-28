@@ -145,7 +145,7 @@
         </div>
 
         <div class="col-12 col-sm-4 align-self-center">
-            <button id="subir-template" class="mt-2 mt-sm-0 btn ficertifButton">Subir</button>
+            <button id="subir-template" class="mt-2 mt-sm-0 btn ficertifButton" type="button">Subir</button>
         </div>
     </div>
 
@@ -201,8 +201,8 @@
 
             <tbody id="body-inscripciones">
                 @foreach (
-                    $evento->inscripciones()->
-                    join('perfil', 'inscripcion.fk_perfil', 'perfil.id')
+                    $evento->inscripciones()
+                    ->join('perfil', 'inscripcion.fk_perfil', 'perfil.id')
                     ->select('inscripcion.*', 'perfil.nombre', 'perfil.apellido', 'perfil.email')
                     ->orderBy('nombre')
                     ->get() as $inscripcion
@@ -253,7 +253,7 @@
     </div>
 @endsection
 
-@section('post-scripts')
+@section('pos-scripts')
     <div id="id_evento" valor="{{ $evento->id_evento }}" hidden></div>
     <script type="text/javascript" src="/js/manejador-evento.js"></script>
     <script type="text/javascript" src="/js/manejador-ciudades.js"></script>

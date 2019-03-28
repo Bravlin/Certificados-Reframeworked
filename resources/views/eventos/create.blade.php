@@ -103,6 +103,6 @@
     </div>
 @endsection
 
-@section('post-scripts')
+@section('pos-scripts')
     <script type="text/javascript" src="/js/manejador-ciudades.js"></script>
 @endsection
