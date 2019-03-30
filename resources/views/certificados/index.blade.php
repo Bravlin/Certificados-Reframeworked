@@ -34,7 +34,13 @@
                         </td>
                         <td>{{ $certificado->perfil_nombre }}</td>
                         <td>{{ $certificado->perfil_apellido }}</td>
-                        <td>{{ $certificado->email_enviado }}</td>
+                        <td>
+                            @if ($certificado->email_enviado != "")
+                                {{ $certificado->email_enviado }}
+                            @else
+                                {{ "No enviado" }}
+                            @endif
+                        </td>
                         <td>{{ date('Y-m-d', strtotime($certificado->fecha_emision)) }}</td>
                         <td>{{ $certificado->tipo }}</td>
                         <td><a href="{{ Storage::url('certificados/'.$certificado->nombre_certificado) }}">Ver</a></td>

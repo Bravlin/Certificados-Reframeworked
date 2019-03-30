@@ -49,7 +49,7 @@
                                         @if (Storage::disk('public')->exists('media/perfiles-usuarios/'.$perfil->id.'-perfil'))
                                             {!! '"'.Storage::url('media/perfiles-usuarios/'.$perfil->id.'-perfil').'"' !!}
                                         @else
-                                            {!! '"'.Storage::url('media/perfiles-usuarios/0-perfil').'"' !!}
+                                            "/img/default-perfil"
                                         @endif
                                 >
                             </a>

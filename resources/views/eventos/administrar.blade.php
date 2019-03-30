@@ -27,7 +27,7 @@
                     @if (Storage::disk('public')->exists('media/portadas-eventos/'.$evento->id_evento.'-p'))
                         {!! '"'.Storage::url('media/portadas-eventos/'.$evento->id_evento.'-p').'"' !!}
                     @else
-                        {!! '"'.Storage::url('media/portadas-eventos/0-p').'"' !!}
+                        "/img/default-portada"
                     @endif
             >
 
