@@ -20,9 +20,9 @@ class CreateCertificadoTable extends Migration
             $table->dateTime('fecha_emision')->useCurrent();
             $table->string('aleatorio', 10);
             $table->string('email_enviado', 254)->nullable();
-            $table->integer('fk_inscripcion');
+            $table->unsignedInteger('fk_inscripcion');
 
-            $table->foreign('fk_inscripcion');
+            $table->foreign('fk_inscripcion')->references('id_inscripcion')->on('inscripcion');
         });
     }
 
