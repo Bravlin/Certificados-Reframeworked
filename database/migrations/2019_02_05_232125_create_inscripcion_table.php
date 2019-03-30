@@ -18,8 +18,8 @@ class CreateInscripcionTable extends Migration
             $table->string('tipo', 12);
             $table->dateTime('fecha_inscripcion')->useCurrent();
             $table->tinyInteger('asistencia')->default(-1);
-            $table->integer('fk_perfil');
-            $table->integer('fk_evento');
+            $table->unsignedInteger('fk_perfil');
+            $table->unsignedInteger('fk_evento');
 
             $table->foreign('fk_perfil')->references('id')->on('perfil');
             $table->foreign('fk_evento')->references('id_evento')->on('evento');
