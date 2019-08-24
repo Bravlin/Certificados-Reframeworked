@@ -16,7 +16,7 @@ class CreateInscripcionTable extends Migration
         Schema::create('inscripcion', function (Blueprint $table) {
             $table->increments('id_inscripcion');
             $table->string('tipo', 12);
-            $table->dateTime('fecha_inscripcion')->useCurrent();
+            $table->dateTime('fecha_inscripcion')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->tinyInteger('asistencia')->default(-1);
             $table->unsignedInteger('fk_perfil');
             $table->unsignedInteger('fk_evento');
