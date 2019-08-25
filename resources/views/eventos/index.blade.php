@@ -27,10 +27,13 @@
     </div>
 
     @if (!$eventos->isEmpty())
-        <div class="row">
-            @foreach ($eventos as $evento)
-                @include('eventos.item')
-            @endforeach
-        </div>
+        @foreach ($eventos as $anio => $eventosAnio)
+            <h3>{{ $anio }}</h3>
+            <div class="row">
+                @foreach ($eventosAnio as $evento)
+                    @include('eventos.item')
+                @endforeach
+            </div>
+        @endforeach
     @endif
 @endsection

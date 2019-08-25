@@ -32,7 +32,10 @@ class EventosController extends Controller
     public function index()
     {
         try {
-            $eventos = Evento::juntada('nombre');
+            $eventos = Evento::juntada('fecha_realizacion', 'des')
+                ->groupBy(function ($evento, $key) {
+                    return \Carbon\Carbon::parse($evento->fecha_realizacion)->format('Y');
+                });
             return view('eventos.index', compact('eventos'));
         } catch (\Throwable $th) {
             abort(500);
