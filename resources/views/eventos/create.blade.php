@@ -15,13 +15,27 @@
 
             <div class="row cuerpo-form">
 
-                <div class="col-12 elemento-form">
+                <div class="col-sm-12 col-md-6 elemento-form">
                     <label for="nombre">Nombre del evento</label>
                     <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Mi evento"
                     value="{{ old('nombre') }}" required>
 
                     @if ($errors->has('nombre'))
                         <p class="alerta">El nombre no puede quedar vacío</p>
+                    @endif
+                </div>
+
+                <div class="col-sm-12 col-md-6 elemento-form">
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria" class="form-control" required>
+                        <option value="">Elija una categoría...</option>
+                        @foreach ($categorias as $categoria)
+                            <option value='{{ $categoria->id_categoria }}'>{{ $categoria->nombre }}</option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('provincia'))
+                        <p class="alerta">Ninguna categoría ha sido seleccionada</p>
                     @endif
                 </div>
 

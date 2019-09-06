@@ -22,6 +22,11 @@ class Evento extends Model
             ->get();
     }
 
+    public function categoria()
+    {
+        return $this->belongsTo('App\Categoria', 'fk_categoria', 'id_categoria');
+    }
+
     public function ciudad()
     {
         return $this->belongsTo('App\Ciudad', 'fk_ciudad', 'id_ciudad');

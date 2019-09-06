@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Evento;
 use App\Perfil;
 use App\Caracter;
+use App\Categoria;
 use App\Provincia;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class EventosController extends Controller
             'ciudad' => 'required',
             'fecha_realizacion' => 'required|date|after:now',
             'portada' => 'mimes:jpeg,png,jpg|max:5000',
-            'descripcion' => 'nullable'
+            'descripcion' => 'nullable',
+            'categoria' => 'required'
         ]);
     }
 
@@ -50,7 +52,8 @@ class EventosController extends Controller
     public function create()
     {
         $provincias = Provincia::orderBy('nombre')->get();
-        return view('eventos.create', compact('provincias'));
+        $categorias = Categoria::orderBy('nombre')->get();
+        return view('eventos.create', compact('provincias', 'categorias'));
     }
 
     /**
@@ -69,7 +72,8 @@ class EventosController extends Controller
             'direccion_altura' => $campos['direccion_altura'],
             'fk_ciudad' => $campos['ciudad'],
             'fecha_realizacion' => $campos['fecha_realizacion'],
-            'fecha_creacion' => date("Y-m-d H:i:s")
+            'fecha_creacion' => date("Y-m-d H:i:s"),
+            'fk_categoria' => $campos['categoria']
         ]);
         if ($request->hasFile('portada'))
             $request->file('portada')->storeAs('media/portadas-eventos', $nuevoEvento->id_evento.'-p', 'public');
