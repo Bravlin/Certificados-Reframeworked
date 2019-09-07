@@ -3,11 +3,18 @@
     color: white;
 }
 
-.contenedor-nombre{
+.contenedor-nombre, .contenedor-categoria{
     background-color: var(--ing-verde);
     position: absolute;
-    bottom: 0;
     width:100%;
+}
+
+.contenedor-nombre{
+    bottom: 0;
+}
+
+.contenedor-categoria{
+    top: 0;
 }
 
 .item-consulta .enlace-evento{

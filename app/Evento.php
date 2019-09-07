@@ -17,7 +17,9 @@ class Evento extends Model
     {
         return self::join('ciudad', 'evento.fk_ciudad', '=', 'ciudad.id_ciudad')
             ->join('provincia', 'ciudad.fk_provincia', '=', 'provincia.id_provincia')
-            ->select('evento.*', 'ciudad.nombre as nombre_ciudad', 'provincia.nombre as nombre_provincia')
+            ->join('categoria', 'evento.fk_categoria', '=', 'categoria.id_categoria')
+            ->select('evento.*', 'ciudad.nombre as nombre_ciudad', 'provincia.nombre as nombre_provincia',
+                'categoria.nombre as nombre_categoria')
             ->orderBy($columnaOrdenamiento, $secuencia)
             ->get();
     }

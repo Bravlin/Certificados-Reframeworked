@@ -48,7 +48,7 @@
                 <div class="lista-navegables rounded fondo-gris py-3">
                     <ul class="pl-0 mx-md-3">
                         <li class="mb-3"><a href="/"><i class="fa fa-home"></i>Inicio</a></li>
-                        <li class="mb-3"><a href="/certificados"><i class="fa fa-file"></i>Certificados</a></li>
+                        <li class="mb-3"><a href="/certificados"><i class="fa fa-file-text"></i>Certificados</a></li>
                         <li class="mb-3"><a href="/eventos"><i class="fa fa-calendar"></i>Eventos</a></li>
                         <li><a href="/perfiles"><i class="fa fa-user"></i>Perfiles</a></li>
                     </ul>
@@ -73,7 +73,7 @@
 
                 <div class="col-3">
                     <a href="/certificados">
-                        <i class="fa fa-file"></i>
+                        <i class="fa fa-file-text"></i>
                         <p>Certificados</p>
                     </a>
                 </div>

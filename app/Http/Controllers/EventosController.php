@@ -89,7 +89,7 @@ class EventosController extends Controller
     public function administrar(Evento $evento)
     {
         $provincias = Provincia::orderBy('nombre')->get();
-        $perfiles = Perfil::orderBY('nombre')->get();
+        $perfiles = Perfil::orderBy('nombre')->get();
         $caracteres = Caracter::all();
         return view('eventos.administrar', compact('evento', 'provincias', 'perfiles', 'caracteres'));
     }

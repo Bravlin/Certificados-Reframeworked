@@ -1,6 +1,11 @@
 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5 d-flex align-items-stretch">
     <div class="card item-consulta">
         <div class="contenedor-portada">
+            <div class="contenedor-categoria px-4">
+                <i class="fa fa-object-group"></i>
+                {{ $evento->nombre_categoria }}
+            </div>
+
             <a href="{{ route('eventos.administrar', ['evento' => $evento->id_evento]) }}">
                 <img class="card-img-top" alt="Card image cap"
                     src=
