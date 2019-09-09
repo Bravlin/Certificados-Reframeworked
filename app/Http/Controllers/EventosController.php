@@ -91,7 +91,9 @@ class EventosController extends Controller
         $provincias = Provincia::orderBy('nombre')->get();
         $perfiles = Perfil::orderBy('nombre')->get();
         $caracteres = Caracter::all();
-        return view('eventos.administrar', compact('evento', 'provincias', 'perfiles', 'caracteres'));
+        $categorias = Categoria::orderBy('nombre')->get();
+        return view('eventos.administrar', compact('evento', 'provincias', 'perfiles', 'caracteres',
+            'categorias'));
     }
 
     /**
@@ -111,6 +113,7 @@ class EventosController extends Controller
             'direccion_altura' => $campos['direccion_altura'],
             'fk_ciudad' => $campos['ciudad'],
             'fecha_realizacion' => $campos['fecha_realizacion'],
+            'fk_categoria' => $campos['categoria']
         ]);
         return back();
     }

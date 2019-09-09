@@ -3,7 +3,7 @@
     border: none;
 }
 
-.editable.ed-categoria{
+.editable.ed-categoria, .i-categoria{
     color: var(--ing-azul);
     font-size: 1.25em;
 }

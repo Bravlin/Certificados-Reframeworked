@@ -21,6 +21,21 @@
         @csrf
         @method('PATCH')
 
+        <div>
+            <i class="i-categoria fa fa-object-group"></i>
+            <select id="categoria" name="categoria" class="editable ed-categoria" required>
+                @foreach ($categorias as $categoria)
+                <option value="{{ $categoria->id_categoria }}"
+                    {{ $categoria->id_categoria == old('categoria', $evento->fk_categoria) ? 'selected' : '' }}
+                >{{ $categoria->nombre }}</option>
+                @endforeach
+
+                @if ($errors->has('categoria'))
+                    <p class="alerta">Ninguna categoría ha sido seleccionada</p>
+                @endif
+            </select>
+        </div>
+
         <div class="contenedor-portada mb-5">
             <img class="portada" alt="portada"
                 src=
