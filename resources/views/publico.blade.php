@@ -25,9 +25,7 @@
         </div>
     </header>
 
-    <div class="container-fluid">
-        @yield('contenido')
-    </div>
+    @yield('contenido')
 
     <footer>
         <div class="container-fluid text-center">
@@ -50,15 +48,14 @@
                     <h3>También podés seguirnos a través de las redes:</h3>
 
                     <div class="row justify-content-center mt-3">
-                        <div class="col-6 col-sm-3 col-md-2"><a href=""><i class="fa fa-facebook-official"></i></a></div>
-                        <div class="col-6 col-sm-3 col-md-2"><a href=""><i class="fa fa-twitter-square"></i></a></div>
-                        <div class="col-6 col-sm-3 col-md-2"><a href=""><i class="fa fa-instagram"></i></a></div>
-                        <div class="col-6 col-sm-3 col-md-2"> <a href=""><i class="fa fa-google-plus-official"></i></a></div>
+                        <div class="col-4 col-md-2"><a href=""><i class="fa fa-facebook-official"></i></a></div>
+                        <div class="col-4 col-md-2"><a href=""><i class="fa fa-twitter-square"></i></a></div>
+                        <div class="col-4 col-md-2"><a href=""><i class="fa fa-instagram"></i></a></div>
                     </div>
                 </div>
             </div>
 
-            <p class="copyright mb-0"><i class="fa fa-copyright"></i>  ficertif 2018</p>
+            <p class="copyright mb-0">Departamento de Informática - Facultad de Ingeniería, U.N.M.D.P.</p>
         </div>
     </footer>
 
