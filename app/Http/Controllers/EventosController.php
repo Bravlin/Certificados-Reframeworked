@@ -81,6 +81,17 @@ class EventosController extends Controller
     }
 
     /**
+     * Devuelve la vista para visualizar el evento dado.
+     *
+     * @param \App\Evento  $evento
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Evento $evento)
+    {
+        return view('eventos.show', compact('evento'));
+    }
+
+    /**
      * Devuelve la vista para visualizar y gestionar el evento dado.
      *
      * @param \App\Evento  $evento

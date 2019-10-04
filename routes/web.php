@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/eventos/{evento}', 'EventosController@show')->name('eventos.show');
+
 Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades')->name('provincia.ciudades');
 
 Route::group(['middleware' => 'administrador_guest'], function() {

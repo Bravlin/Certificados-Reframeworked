@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" type="text/css" href="/css/evento.css">
     <link rel="stylesheet" type="text/css" href="/css/edicion-evento.css">
-    <link rel="stylesheet" type="text/css" href="/css/comentario.css">
 
     <style>
         .alerta{
