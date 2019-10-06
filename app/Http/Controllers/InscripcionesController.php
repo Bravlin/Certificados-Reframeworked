@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Caracter;
 use App\Inscripcion;
+use App\Perfil;
 use Illuminate\Http\Request;
 
 class InscripcionesController extends Controller
@@ -27,6 +27,27 @@ class InscripcionesController extends Controller
             'fk_evento' => $campos['idEvento']
         ]);
         return view('eventos.inscripciones.fila', compact('inscripcion'));
+    }
+
+    public function storePublico(Request $request)
+    {
+        $atributos = $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'telefono' => 'required',
+            'email' => 'required|email',
+            'organismo' => 'required',
+            'cargo' => 'required',
+        ]);
+        $perfil = Perfil::where('email', $atributos['email'])->first();
+        if (!$perfil)
+            $perfil = Perfil::create($atributos);
+        Inscripcion::create([
+            'tipo' => 'Asistente',
+            'fk_perfil' => $perfil->id,
+            'fk_evento' => $request['idEvento']
+        ]);
+        return back();
     }
 
     /**

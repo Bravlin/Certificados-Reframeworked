@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-container py-5 px-1 px-sm-3 row justify-content-center mx-auto">
-            <form class="formulario-principal color-blanco" method="POST" action="/perfiles" enctype="multipart/form-data">
+            <form class="formulario-principal color-blanco" method="POST" action="{{ route('publico.inscripcion') }}" enctype="multipart/form-data">
                 @csrf
 
                 <h1 class="text-center">Inscripción</h1>
@@ -118,6 +118,8 @@
                             <p class="alerta">Debe indicar un cargo.</p>
                         @endif
                     </div>
+
+                    <input type="hidden" id="idEvento" name="idEvento" value={{ $evento->id_evento }}>
                 </div>
 
                 <div class="row col-12 col-md-6 justify-content-center mx-auto">

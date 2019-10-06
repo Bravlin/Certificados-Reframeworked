@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/eventos/{evento}', 'EventosController@show')->name('eventos.show');
+Route::post('/inscripcion', 'InscripcionesController@storePublico')->name('publico.inscripcion');
 
 Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades')->name('provincia.ciudades');
 
