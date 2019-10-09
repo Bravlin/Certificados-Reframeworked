@@ -5,6 +5,12 @@
 @section('head-particular')
     <link rel="stylesheet" type="text/css" href="/css/evento.css">
     <link rel="stylesheet" type="text/css" href="/css/formulario.css">
+
+    @if (session('estado'))
+        <script>
+            alert("{{ session('estado') }}");
+        </script>
+    @endif
 @endsection
 
 @section('contenido')

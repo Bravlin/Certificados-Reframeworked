@@ -44,6 +44,16 @@ class EventosController extends Controller
         }
     }
 
+    public function publico()
+    {
+        try {
+            $eventos = Evento::juntada('fecha_realizacion', 'asc');
+            return view('eventos.publico', compact('eventos'));
+        } catch (\Throwable $th) {
+            abort(500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

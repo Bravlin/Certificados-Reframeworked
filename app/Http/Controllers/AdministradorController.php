@@ -11,7 +11,7 @@ class AdministradorController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
     protected $redirectAfterLogout = '/administradores/login';
 
     protected function guard()
@@ -22,5 +22,9 @@ class AdministradorController extends Controller
     public function showLoginForm()
     {
         return view('administradores.login');
+    }
+
+    protected function loggedOut(Request $request) {
+        return redirect($this->redirectAfterLogout);
     }
 }

@@ -38,18 +38,18 @@
     background-color: rgb(245, 245, 245);
 }
 
-img{
+.item-consulta img{
     object-fit: cover;
 }
 
 @media screen and (max-width: 575px){
-    img{
+    .item-consulta img{
         height: 140px;
     }
 }
 
 @media screen and (min-width: 576px){
-    img{
+    .item-consulta img{
         height: 160px;
     }
 }

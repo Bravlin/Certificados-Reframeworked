@@ -39,15 +39,26 @@ class InscripcionesController extends Controller
             'organismo' => 'required',
             'cargo' => 'required',
         ]);
-        $perfil = Perfil::where('email', $atributos['email'])->first();
-        if (!$perfil)
-            $perfil = Perfil::create($atributos);
+        $perfil = Perfil::updateOrCreate(
+            ['email' => $atributos['email']],
+            [
+                'nombre' => $atributos['nombre'],
+                'apellido' => $atributos['apellido'],
+                'telefono' => $atributos['telefono'],
+                'organismo' => $atributos['organismo'],
+                'cargo' => $atributos['cargo']
+            ]
+        );
+        if (Inscripcion::where('fk_perfil',  $perfil->id)
+                ->where('fk_evento', $request['idEvento'])
+                ->first())
+            return back()->with('estado', 'Error: usted ya está inscripto.');
         Inscripcion::create([
             'tipo' => 'Asistente',
             'fk_perfil' => $perfil->id,
             'fk_evento' => $request['idEvento']
         ]);
-        return back();
+        return back()->with('estado', 'Inscripción correcta.');
     }
 
     /**

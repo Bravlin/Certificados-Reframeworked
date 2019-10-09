@@ -13,8 +13,7 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/', 'EventosController@publico')->name('publico.index');
 Route::get('/eventos/{evento}', 'EventosController@show')->name('eventos.show');
 Route::post('/inscripcion', 'InscripcionesController@storePublico')->name('publico.inscripcion');
 
@@ -26,7 +25,7 @@ Route::group(['middleware' => 'administrador_guest'], function() {
 });
 
 Route::group(['middleware' => 'administrador_auth'], function() {
-    Route::get('/', 'InicioController@index');
+    Route::get('/home', 'InicioController@index');
 
     Route::get('/perfiles/agregar-masivo', 'InscripcionMasivaController@agregarMasivo')->name('perfiles.agregar-masivo');
     Route::post('/perfiles/agregar-masivo', 'InscripcionMasivaController@storeOrUpdateMasivo')->name('pefiles.store-update-masivo');

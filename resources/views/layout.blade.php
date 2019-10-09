@@ -47,7 +47,7 @@
             <aside class="d-none d-md-block col-md-3 col-lg-2 barra-vertical pt-5">
                 <div class="lista-navegables rounded fondo-gris py-3">
                     <ul class="pl-0 mx-md-3">
-                        <li class="mb-3"><a href="/"><i class="fa fa-home"></i>Inicio</a></li>
+                        <li class="mb-3"><a href="/home"><i class="fa fa-home"></i>Inicio</a></li>
                         <li class="mb-3"><a href="/certificados"><i class="fa fa-file-text"></i>Certificados</a></li>
                         <li class="mb-3"><a href="/eventos"><i class="fa fa-calendar"></i>Eventos</a></li>
                         <li><a href="/perfiles"><i class="fa fa-user"></i>Perfiles</a></li>
@@ -65,7 +65,7 @@
         <div class="fixed-bottom fondo-gris d-block d-md-none barra-fondo text-center">
             <div class="row">
                 <div class="col-3">
-                    <a href="/">
+                    <a href="/home">
                         <i class="fa fa-home"></i>
                         <p>Inicio</p>
                     </a>

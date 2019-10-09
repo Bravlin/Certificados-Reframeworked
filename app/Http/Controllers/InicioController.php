@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Evento;
 
 class InicioController extends Controller
@@ -11,7 +10,7 @@ class InicioController extends Controller
     {
         try {
             $eventos = Evento::juntada('fecha_creacion', 'des');
-            return view('index', compact('eventos'));
+            return view('administradores.index', compact('eventos'));
         } catch (\Throwable $th) {
             abort(500);
         }
