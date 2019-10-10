@@ -49,7 +49,7 @@ class InscripcionMasivaController extends Controller
                             );
                             Inscripcion::create([
                                 'tipo' => $request->tipo,
-                                'fk_perfil' => $perfil->id,
+                                'fk_perfil' => $perfil->id_perfil,
                                 'fk_evento' => $request->evento,
                                 'asistencia' => $request->asistencia
                             ]);

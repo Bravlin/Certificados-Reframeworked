@@ -17,7 +17,7 @@ class RedirectIfAdministradorAuthenticated
     public function handle($request, Closure $next)
     {
         if (Auth::guard('administrador')->check())
-            return redirect('/');
+            return redirect('/home');
         else
             return $next($request);
     }

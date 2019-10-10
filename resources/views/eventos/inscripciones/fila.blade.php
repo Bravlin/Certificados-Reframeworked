@@ -1,7 +1,7 @@
 <tr id="inscripcion-{{ $inscripcion->id_inscripcion }}">
-    <td>{{ $inscripcion->perfil->nombre }}</td>
-    <td>{{ $inscripcion->perfil->apellido }}</td>
-    <td>{{ $inscripcion->perfil->email }}</td>
+    <td>{{ $inscripcion->nombre }}</td>
+    <td>{{ $inscripcion->apellido }}</td>
+    <td>{{ $inscripcion->email }}</td>
     <td>{{ date('Y-m-d', strtotime($inscripcion->fecha_inscripcion)) }}</td>
     <td>{{ $inscripcion->tipo }}</td>
 

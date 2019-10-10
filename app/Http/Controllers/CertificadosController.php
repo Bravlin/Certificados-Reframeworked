@@ -212,7 +212,7 @@ class CertificadosController extends Controller
         try {
             $certificados = Certificado::juntada(
                 ['evento_nombre'],
-                [['perfil.id', '=', $perfil->id]]
+                [['inscripcion.fk_perfil', '=', $perfil->id_perfil]]
             );
             return view('certificados.index', compact('certificados'));
         } catch (\Throwable $th) {

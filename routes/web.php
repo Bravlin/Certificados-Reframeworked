@@ -13,10 +13,6 @@
 
 Auth::routes();
 
-Route::get('/', 'EventosController@publico')->name('publico.index');
-Route::get('/eventos/{evento}', 'EventosController@show')->name('eventos.show');
-Route::post('/inscripcion', 'InscripcionesController@storePublico')->name('publico.inscripcion');
-
 Route::get('/provincias/{provincia}/ciudades', 'ProvinciaCiudadesController@selectCiudades')->name('provincia.ciudades');
 
 Route::group(['middleware' => 'administrador_guest'], function() {
@@ -60,3 +56,9 @@ Route::group(['middleware' => 'administrador_auth'], function() {
 
     Route::get('/administradores/logout', 'AdministradorController@logout')->name('administradores.logout');
 });
+
+/* Publico */
+
+Route::get('/', 'EventosController@publico')->name('publico.index');
+Route::get('/eventos/{evento}', 'EventosController@show')->name('eventos.show');
+Route::post('/inscripcion', 'InscripcionesController@storePublico')->name('publico.inscripcion');

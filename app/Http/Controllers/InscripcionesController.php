@@ -21,7 +21,14 @@ class InscripcionesController extends Controller
             'idPerfil' => 'required',
             'tipo' => 'required'
         ]);
+        $perfil = Perfil::find($campos['idPerfil']);
         $inscripcion = Inscripcion::create([
+            'email' => $perfil->email,
+            'nombre' => $perfil->nombre,
+            'apellido' => $perfil->apellido,
+            'telefono' => $perfil->telefono,
+            'organismo' => $perfil->organismo,
+            'cargo' => $perfil->cargo,
             'tipo' => $campos['tipo'],
             'fk_perfil' => $campos['idPerfil'],
             'fk_evento' => $campos['idEvento']
@@ -54,8 +61,14 @@ class InscripcionesController extends Controller
                 ->first())
             return back()->with('estado', 'Error: usted ya está inscripto.');
         Inscripcion::create([
+            'email' => $atributos['email'],
+            'nombre' => $atributos['nombre'],
+            'apellido' => $atributos['apellido'],
+            'telefono' => $atributos['telefono'],
+            'organismo' => $atributos['organismo'],
+            'cargo' => $atributos['cargo'],
             'tipo' => 'Asistente',
-            'fk_perfil' => $perfil->id,
+            'fk_perfil' => $perfil->id_perfil,
             'fk_evento' => $request['idEvento']
         ]);
         return back()->with('estado', 'Inscripción correcta.');

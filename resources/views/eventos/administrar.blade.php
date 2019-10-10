@@ -178,7 +178,7 @@
             <select id="select-perfil" class="form-control" required>
                 <option value="">Elija a quien inscribir...</option>
                 @foreach ($perfiles as $perfil)
-                    <option value="{{ $perfil->id }}">{{ $perfil->nombre.' '.$perfil->apellido.' - '.$perfil->email}}</option>
+                    <option value="{{ $perfil->id_perfil }}">{{ $perfil->nombre.' '.$perfil->apellido.' - '.$perfil->email}}</option>
                 @endforeach
             </select>
         </div>
@@ -216,8 +216,6 @@
             <tbody id="body-inscripciones">
                 @foreach (
                     $evento->inscripciones()
-                    ->join('perfil', 'inscripcion.fk_perfil', 'perfil.id')
-                    ->select('inscripcion.*', 'perfil.nombre', 'perfil.apellido', 'perfil.email')
                     ->orderBy('nombre')
                     ->get() as $inscripcion
                 )

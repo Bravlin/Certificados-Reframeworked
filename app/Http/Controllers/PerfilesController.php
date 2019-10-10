@@ -72,12 +72,12 @@ class PerfilesController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'telefono' => 'required',
-            'email' => 'required|email|unique:perfil,email,'.$perfil->id,
+            'email' => "required|email|unique:perfil,email,$perfil->id_perfil,id_perfil",
             'organismo' => 'required',
             'cargo' => 'required',
         ]);
         $perfil->update($atributos);
-        return redirect('/perfiles#perfil-'.$perfil->id);
+        return redirect('/perfiles#perfil-'.$perfil->id_perfil);
     }
 
     /**

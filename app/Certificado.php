@@ -15,13 +15,12 @@ class Certificado extends Model
     public static function juntada($columnasOrder = [], $where = [])
     {
         $res = self::join('inscripcion', 'certificado.fk_inscripcion', '=', 'inscripcion.id_inscripcion')
-            ->join('evento', 'inscripcion.fk_evento', '=', 'evento.id_evento')
-            ->join('perfil', 'inscripcion.fk_perfil', '=', 'perfil.id');
+            ->join('evento', 'inscripcion.fk_evento', '=', 'evento.id_evento');
         if (!empty($where))
             $res->where($where);
         $res->select('certificado.id_certificado', 'certificado.fecha_emision', 'certificado.nombre_certificado', 'certificado.email_enviado',
             'inscripcion.tipo', 'inscripcion.fk_evento', 'inscripcion.fk_perfil',
-            'evento.nombre as evento_nombre', 'perfil.nombre as perfil_nombre', 'perfil.apellido as perfil_apellido');
+            'evento.nombre as evento_nombre', 'inscripcion.nombre as perfil_nombre', 'inscripcion.apellido as perfil_apellido');
         foreach ($columnasOrder as $columna)
             $res->orderBy($columna);
         return $res->get();
