@@ -18,7 +18,7 @@ class Inscripcion extends Model
 
     public function perfil()
     {
-        return $this->belongsTo('App\Perfil', 'fk_perfil', 'id');
+        return $this->belongsTo('App\Perfil', 'fk_perfil', 'id_perfil');
     }
 
     public function evento()

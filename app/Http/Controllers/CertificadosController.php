@@ -146,8 +146,8 @@ class CertificadosController extends Controller
     private function crearCertificado(Inscripcion $inscripcion)
     {
         $id = $inscripcion->id_inscripcion;
-        $nombre = ucwords(strtolower($inscripcion->perfil->nombre));
-        $apellido = ucwords(strtolower($inscripcion->perfil->apellido));
+        $nombre = ucwords(strtolower($inscripcion->nombre));
+        $apellido = ucwords(strtolower($inscripcion->apellido));
         $apiNombre = preg_replace('/\s+/', ' ', $nombre." ".$apellido);
         $apiNombre = utf8_decode($apiNombre);
 

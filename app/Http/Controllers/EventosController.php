@@ -47,7 +47,14 @@ class EventosController extends Controller
     public function publico()
     {
         try {
-            $eventos = Evento::juntada('fecha_realizacion', 'asc');
+            $eventos = Evento::join('ciudad', 'evento.fk_ciudad', '=', 'ciudad.id_ciudad')
+                ->join('provincia', 'ciudad.fk_provincia', '=', 'provincia.id_provincia')
+                ->join('categoria', 'evento.fk_categoria', '=', 'categoria.id_categoria')
+                ->where('fecha_realizacion', '>',  date('Y-m-d H:i:s'))
+                ->select('evento.*', 'ciudad.nombre as nombre_ciudad', 'provincia.nombre as nombre_provincia',
+                    'categoria.nombre as nombre_categoria')
+                ->orderBy('fecha_realizacion', 'asc')
+                ->get();
             return view('eventos.publico', compact('eventos'));
         } catch (\Throwable $th) {
             abort(500);

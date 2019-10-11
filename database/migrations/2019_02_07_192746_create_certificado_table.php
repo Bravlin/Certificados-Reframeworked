@@ -17,7 +17,7 @@ class CreateCertificadoTable extends Migration
             $table->increments('id_certificado');
             $table->string('nombre_certificado', 255);
             $table->tinyInteger('entregado')->default(0);
-            $table->dateTime('fecha_emision')->useCurrent();
+            $table->dateTime('fecha_emision')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('aleatorio', 10);
             $table->string('email_enviado', 254)->nullable();
             $table->unsignedInteger('fk_inscripcion');
