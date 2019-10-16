@@ -6,6 +6,7 @@ use App\Evento;
 use App\Inscripcion;
 use Illuminate\Http\Request;
 use App\Mail\EnvioCertificado;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -29,9 +30,11 @@ class MailController extends Controller
             Log::error('Certificado correspondiente a inscripción #'.$inscripcion->id_inscripcion.' no encontrado.');
             throw new HttpException(500);
         } else {
-            $destinatario = $inscripcion->perfil->email;
+            $destinatario = $inscripcion->email;
+            $now = Carbon::now()->addSeconds(5);
             Mail::to($destinatario)
-                ->queue(new EnvioCertificado($campos['remitente'], $campos['asunto'], $campos['cuerpo_mail'], $certificado->nombre_certificado));
+                ->later($now, new EnvioCertificado($campos['remitente'], $campos['asunto'], $campos['cuerpo_mail'], $certificado->nombre_certificado));
+            Log::info('Mail a inscripción #'.$inscripcion->id_inscripcion.' correctamente encolado.');
             $certificado->email_enviado = $destinatario;
             $certificado->save();
         }
