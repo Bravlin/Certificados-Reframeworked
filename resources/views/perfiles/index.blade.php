@@ -80,6 +80,8 @@
                 </div>
             @endforeach
         </div>
+
+        {!! $perfiles->render() !!}
     @endif
 @endsection
 

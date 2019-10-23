@@ -13,17 +13,6 @@ class Evento extends Model
 
     public $timestamps = false;
 
-    public static function juntada($columnaOrdenamiento = 'id_evento', $secuencia = 'asc')
-    {
-        return self::join('ciudad', 'evento.fk_ciudad', '=', 'ciudad.id_ciudad')
-            ->join('provincia', 'ciudad.fk_provincia', '=', 'provincia.id_provincia')
-            ->join('categoria', 'evento.fk_categoria', '=', 'categoria.id_categoria')
-            ->select('evento.*', 'ciudad.nombre as nombre_ciudad', 'provincia.nombre as nombre_provincia',
-                'categoria.nombre as nombre_categoria')
-            ->orderBy($columnaOrdenamiento, $secuencia)
-            ->get();
-    }
-
     public function categoria()
     {
         return $this->belongsTo('App\Categoria', 'fk_categoria', 'id_categoria');

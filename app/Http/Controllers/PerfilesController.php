@@ -14,7 +14,7 @@ class PerfilesController extends Controller
      */
     public function index()
     {
-        $perfiles = Perfil::orderBy('nombre')->get();
+        $perfiles = Perfil::orderBy('nombre')->paginate(50);
         return view('perfiles.index', compact('perfiles'));
     }
 

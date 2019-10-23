@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <h1 class="mb-5 text-center">Eventos próximos</h1>
 
-        <div class="row mb-5">
+        <div class="row mb-5 px-5">
             @if (!$eventos->isEmpty())
                 @foreach ($eventos as $evento)
                     @include('eventos.item_publico')
