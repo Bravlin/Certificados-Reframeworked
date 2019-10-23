@@ -14,7 +14,7 @@ class PerfilesController extends Controller
      */
     public function index()
     {
-        $perfiles = Perfil::orderBy('nombre')->paginate(50);
+        $perfiles = Perfil::orderBy('apellido')->orderBy('nombre')->paginate(50);
         return view('perfiles.index', compact('perfiles'));
     }
 
@@ -77,7 +77,7 @@ class PerfilesController extends Controller
             'cargo' => 'required',
         ]);
         $perfil->update($atributos);
-        return redirect('/perfiles#perfil-'.$perfil->id_perfil);
+        return redirect('/perfiles');
     }
 
     /**

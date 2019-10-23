@@ -1,7 +1,7 @@
 /*global $*/
 
 $(document).ready(function(){
-    $('#perfiles').on('click', '.eliminar-perfil', function(){
+    $('#body-perfiles').on('click', '.eliminar-perfil', function(){
         if (confirm("¿Está seguro que desea eliminar el perfil indicado?")){
             var idPerfil = $(this).attr('valor');
             $.ajaxSetup({

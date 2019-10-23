@@ -9,7 +9,6 @@ if [ ! -d "$STORAGE_PUBLIC/certificados" ]; then
 fi
 if [ ! -d "$STORAGE_PUBLIC/media" ]; then
     mkdir "$STORAGE_PUBLIC/media"
-    mkdir "$STORAGE_PUBLIC/media/perfiles-usuarios"
     mkdir "$STORAGE_PUBLIC/media/portadas-eventos"
 fi
 if [ ! -d "$STORAGE_PUBLIC/templates" ]; then
