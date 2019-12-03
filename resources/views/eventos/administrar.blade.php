@@ -201,8 +201,8 @@
         <table class="table table-striped table-hover table-sm">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Fecha de inscripción</th>
                     <th scope="col">Participación</th>
@@ -216,6 +216,7 @@
             <tbody id="body-inscripciones">
                 @foreach (
                     $evento->inscripciones()
+                    ->orderBy('apellido')
                     ->orderBy('nombre')
                     ->get() as $inscripcion
                 )
